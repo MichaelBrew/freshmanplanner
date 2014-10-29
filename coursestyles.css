@@ -12,11 +12,6 @@
 	text-align: center;
 }
 
-.apScoreNums:hover {
-	font-weight: bold;
-	color: #33ADFF;
-}
-
 .stageDiv {
 	margin:20px;
 	margin-top: 80px;
@@ -78,8 +73,16 @@
 /*
  * PICK AP
  */
-#pickApDiv {
+.apScoreNums {
+	font-size: 14px;
+}
 
+.apScoreNums:hover {
+	color: #33ADFF;
+}
+
+.apSelectedScore {
+	background-color: blue;
 }
 
 #apClassTable {
