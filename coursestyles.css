@@ -1,9 +1,119 @@
-#container {
+/*
+ * GENERAL
+ */
+#containerDiv {
 	margin: 20px;
+	font-family: 'Open Sans', sans-serif;
 }
 
-#title {
+#content {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.apScoreNums:hover {
+	font-weight: bold;
+	color: #33ADFF;
+}
+
+.stageDiv {
+	margin:20px;
+	margin-top: 80px;
+}
+
+/*
+ * TITLE
+ */
+#titleText {
 	font-family: Marvel;
 	font-size: 36px;
 	text-align: center; 
+}
+
+/*
+ * PICK MAJOR
+ */
+#pickMajorDiv {
+	width: 60%;
+	margin: 0 auto;
+}
+
+#coenMajor {
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	width: 49%;
+	float: left;
+
+	background-color: #CAD0D5;
+}
+
+#webMajor {
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	width: 49%;
+	float: right;
+
+	background-color: #CAD0D5;
+}
+
+#coenMajor:hover {
+	background-color: #B2E0FF;
+}
+
+#webMajor:hover {
+	background-color: #B2E0FF;
+}
+
+#coenMajor:active {
+	background-color: #8EB3CC;
+}
+
+#webMajor:active {
+	background-color: #8EB3CC;
+}
+
+/*
+ * PICK AP
+ */
+#pickApDiv {
+
+}
+
+#apClassTable {
+	margin: 0 auto;
+}
+
+#apClassTable td {
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin: 20px;
+}
+
+/*
+ * PICK TRANSFER CREDITS
+ */
+#transferCreditsTable {
+	margin: 0 auto;
+}
+
+#transferCreditsTable td {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+/*
+ * SCHEDULE
+ */
+#scheduleTable {
+	margin: 0 auto;
+	border: 2px solid black;
+}
+
+#scheduleTable td {
+	padding: 10px;
+	border: 1px solid black;
 }
