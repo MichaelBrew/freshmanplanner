@@ -65,8 +65,8 @@
 	color: #33ADFF;
 }
 
-.apSelectedScore {
-	background-color: blue;
+.noneButton {
+	border: 2px solid blue;
 }
 
 #apClassTable {

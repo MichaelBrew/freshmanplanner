@@ -1,8 +1,8 @@
+var selectedMajor = "";
+
 /*******************/
 /* MAJOR SELECTION */
 /*******************/
-
-var selectedMajor;
 
 // Hover functions
 $( "#coenMajor" ).hover(function() {
@@ -60,3 +60,25 @@ $( "#webMajor" ).click(function() {
 	$( "#coenMajor" ).css("border", "none");
 	$( "#coenMajor" ).css("font-weight", "normal");
 })
+
+/****************/
+/* AP SELECTION */
+/****************/
+
+// Full click functions
+$( ".apScoreNums" ).click(function() {
+	// TODO: currently clicking on a button changes the style of all other scores (besides just removing border) - fix that
+	$( this ).css("border","2px solid blue");
+
+	var span = $( this ).parent();
+	var tempButton;
+
+	for(var i = 0; i < span.children().length; i++) {
+		tempButton = span.children().eq(i);
+
+		if(tempButton.attr("id") != $( this ).attr("id")) {
+			console.log("Removing border from a button");
+			tempButton.css("border", "none");
+		}
+	}
+});
