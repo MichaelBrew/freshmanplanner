@@ -103,11 +103,6 @@ $( "#coenMajor" ).click(function() {
     $( "#webMajor" ).css("background","#CAD0D5");
     $( "#webMajor" ).css("border", "none");
     $( "#webMajor" ).css("font-weight", "normal");
-
-    if(currentStep == 0) {
-        moveToAp();
-    }
-
 });
 
 $( "#webMajor" ).click(function() {
@@ -119,11 +114,19 @@ $( "#webMajor" ).click(function() {
     $( "#coenMajor" ).css("background","#CAD0D5");
     $( "#coenMajor" ).css("border", "none");
     $( "#coenMajor" ).css("font-weight", "normal");
+});
 
-    if(currentStep == 0) {
+$( "#yesMayChangeMajorButton" ).click(function() {
+    if (currentStep == 0) {
         moveToAp();
     }
-})
+});
+
+$( "#noMayChangeMajorButton" ).click(function() {
+    if (currentStep == 0) {
+        moveToAp();
+    }
+});
 
 /****************/
 /* AP SELECTION */
@@ -131,7 +134,8 @@ $( "#webMajor" ).click(function() {
 
 // Full click functions
 $( ".apScoreNums" ).click(function() {
-    // TODO: currently clicking on a button changes the style of all other scores (besides just removing border) - fix that
+    // TODO: currently clicking on a button changes the style of all
+    //       other scores (besides just removing border) - fix that
     $( this ).css("border","2px solid blue");
 
     var span = $( this ).parent();
@@ -156,6 +160,18 @@ $( "#doneApButton" ).click(function() {
 /**********************/
 
 $( "#doneTransferButton" ).click(function() {
+    moveToCalcReadiness();
+});
+
+/*****************************/
+/* CALC REAADINESS SELECTION */
+/*****************************/
+
+$( "#calcReady9Button" ).click(function() {
+    moveToSchedule();
+});
+
+$( "#calcReady11Button" ).click(function() {
     moveToSchedule();
 });
 
@@ -166,11 +182,13 @@ $( "#doneTransferButton" ).click(function() {
 
 (function disableElements() {
     // TODO: Probably shouldn't hardcode eq(x)
-    $( "#content" ).children().eq(1).css("opacity", 0.2);
-    $( "#content" ).children().eq(1).find("button").prop("disabled", true);
-    $( "#content" ).children().eq(2).css("opacity", 0.2);
-    $( "#content" ).children().eq(2).find("input").prop("disabled", true);
-    $( "#content" ).children().eq(3).css("opacity", 0.2);
-    $( "#content" ).children().eq(3).find("button").prop("disabled", true);
-    $( "#content" ).children().eq(4).css("opacity", 0.2);
+    var children = $( "#content" ).children();
+
+    $(children[1]).css("opacity", 0.2);
+    $(children[1]).find("button").prop("disabled", true);
+    $(children[2]).css("opacity", 0.2);
+    $(children[2]).find("input").prop("disabled", true);
+    $(children[3]).css("opacity", 0.2);
+    $(children[3]).find("button").prop("disabled", true);
+    $(children[4]).css("opacity", 0.2);
 }());
