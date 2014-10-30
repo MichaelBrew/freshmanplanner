@@ -125,24 +125,24 @@
                     <td><b>Engineering</b></td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox">MATH 11</td>
-                    <td><input type="checkbox">CHEM 11</td>
-                    <td><input type="checkbox">COEN 10</td>
+                    <td><input type="checkbox" id="checkMath11">MATH 11</td>
+                    <td><input type="checkbox" id="checkChem11">CHEM 11</td>
+                    <td><input type="checkbox" id="checkCoen10">COEN 10</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox">MATH 12</td>
-                    <td><input type="checkbox">PHYS 31</td>
-                    <td><input type="checkbox">COEN 11</td>
+                    <td><input type="checkbox" id="checkMath12">MATH 12</td>
+                    <td><input type="checkbox" id="checkPhys31">PHYS 31</td>
+                    <td><input type="checkbox" id="checkCoen11">COEN 11</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox">MATH 13</td>
-                    <td><input type="checkbox">PHYS 32</td>
-                    <td><input type="checkbox">COEN 12</td>
+                    <td><input type="checkbox" id="checkMath13">MATH 13</td>
+                    <td><input type="checkbox" id="checkPhys32">PHYS 32</td>
+                    <td><input type="checkbox" id="checkCoen12">COEN 12</td>
                 </tr>
                 <tr>
-                    <td><input type="checkbox">MATH 14</td>
-                    <td><input type="checkbox">PHYS 33</td>
-                    <td><input type="checkbox">COEN 19</td>
+                    <td><input type="checkbox" id="checkMath14">MATH 14</td>
+                    <td><input type="checkbox" id="checkPhys33">PHYS 33</td>
+                    <td><input type="checkbox" id="checkCoen19">COEN 19</td>
                 </tr>
             </table>
             <button id="doneTransferButton">Done</button>
@@ -163,27 +163,35 @@
                     <td><b>Spring</b></td>
                 </tr>
                 <tr>
-                    <td>Class x</td>
-                    <td>Class x</td>
-                    <td>Class x</td>
+                    <td id = "fall0">Class x</td>
+                    <td id = "winter0">Class x</td>
+                    <td id = "spring0">Class x</td>
                 </tr>
                 <tr>
-                    <td>Class x</td>
-                    <td>Class x</td>
-                    <td>Class x</td>
+                    <td id = "fall1">Class x</td>
+                    <td id = "winter1">Class x</td>
+                    <td id = "spring1">Class x</td>
                 </tr>
                 <tr>
-                    <td>Class x</td>
-                    <td>Class x</td>
-                    <td>Class x</td>
+                    <td id = "fall2">Class x</td>
+                    <td id = "winter2">Class x</td>
+                    <td id = "spring2">Class x</td>
+                </tr>
+                <tr>
+                    <td id = "fall3">Class x</td>
+                    <td id = "winter3">Class x</td>
+                    <td id = "spring3">Class x</td>
                 </tr>
             </table>
             <button id="printScheduleButton">Print</button>
+            <!-- TODO: remove and dynamically update later -->
+            <button id="test" onClick="test()">Test (TODO: remove)</button>
         </div>
     </div>
 </div>
 
 <!-- Linking external JS functions -->
 <script src="courselogic.js"></script>
+<script src="sched.js"></script>
 </body>
 </html>
