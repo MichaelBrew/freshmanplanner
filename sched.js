@@ -212,8 +212,10 @@ function checkForCI(quarter1Courses, quarter2Courses) {
 		if (quarter1Courses[i].title == "CORE") {
 			for (var j = 0; j < quarter2Courses.length; j++) {
 				if (quarter2Courses[j].title == "CORE") {
-					quarter1Courses[i].title = "C&I 1";
-					quarter2Courses[i].title = "C&I 2";
+					var ci1 = new course("C&I 1", CATEGORY_CORE, [true,true,true], []);
+					var ci2 = new course("C&I 2", CATEGORY_CORE, [true,true,true], []);
+					quarter1Courses[i] = ci1;
+					quarter2Courses[j] = ci2;
 					return true;
 				}
 			}
@@ -227,7 +229,9 @@ function checkForCI(quarter1Courses, quarter2Courses) {
 
 
 
-
+function getTransferCredits() {
+						
+}
 
 function test() {
 	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
@@ -257,20 +261,93 @@ function test() {
 	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]);
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 
-	var coreClasses = [ctw1, ctw2, core];
+	var coreClasses = [ctw1, ctw2, core];	
 	
-	var transferchem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,true,true], []);
-	var transferphys31 = new course("PHYS 31", CATEGORY_SCIENCE, [true,true,true], []);
-	var transferphys32 = new course("PHYS 32", CATEGORY_SCIENCE, [true,true,true], []);
+	// Get user's transfer credits
+	var transferCredits = [];
+	if (document.getElementById("checkMath11").checked)
+		transferCredits.push(math11);	
+	if (document.getElementById("checkMath12").checked)
+		transferCredits.push(math12);	
+	if (document.getElementById("checkMath13").checked)
+		transferCredits.push(math13);	
+	if (document.getElementById("checkMath14").checked)
+		transferCredits.push(math14);	
+	if (document.getElementById("checkChem11").checked)
+		transferCredits.push(chem11);	
+	if (document.getElementById("checkPhys31").checked)
+		transferCredits.push(phys31);					
+	if (document.getElementById("checkPhys32").checked)
+		transferCredits.push(phys32);	
+	if (document.getElementById("checkPhys33").checked)
+		transferCredits.push(phys33);
+	if (document.getElementById("checkCoen10").checked)
+		transferCredits.push(coen10);							
+	if (document.getElementById("checkCoen11").checked)
+		transferCredits.push(coen11);	
+	if (document.getElementById("checkCoen12").checked)
+		transferCredits.push(coen12);			
+	if (document.getElementById("checkCoen19").checked)
+		transferCredits.push(coen19);	
 	
-	var transferCourses = [transferchem11, transferphys31, transferphys32];
-	
-	
-	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCourses, false, true);
+	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, false, true);
+	var sortedSched = sortSched(sched);
 
-	alert("fall: " + sched[0][0].title + sched[0][1].title + sched[0][2].title +sched[0][3].title);
-	alert("winter: " + sched[1][0].title + sched[1][1].title + sched[1][2].title +sched[1][3].title);
-	alert("spring: " + sched[2][0].title + sched[2][1].title + sched[2][2].title +sched[2][3].title);
+	// Display schedule on table
+	// TODO need way to add ENG1 cell
+	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
+	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
+	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
+	document.getElementById("fall3").innerHTML = sortedSched[0][3].title;
+
+	document.getElementById("winter0").innerHTML = sortedSched[1][0].title;
+	document.getElementById("winter1").innerHTML = sortedSched[1][1].title;
+	document.getElementById("winter2").innerHTML = sortedSched[1][2].title;
+	document.getElementById("winter3").innerHTML = sortedSched[1][3].title;
+
+	document.getElementById("spring0").innerHTML = sortedSched[2][0].title;
+	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
+	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
+	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
 }
 
+/* Takes freshman schedule and returns a schedule sorted by category
+ * Parameters:
+ *	course[][] schedule (course[FALL] corresponds to fall courses and so on) 
+ * Return:
+ *	course[][] (sorted list of courses)
+ */
+function sortSched(schedule) {
+	var sorted = [];
 
+	// Sort each quarter
+	for (var i = 0; i < schedule.length; i++) {
+		var coenCourses = [];
+		var scienceCourses = [];
+		var mathCourses = [];
+		var coreCourses = [];
+		
+		// Sort into categories
+		for (var j = 0; j < schedule[i].length; j++) {
+			switch (schedule[i][j].category) {
+				case CATEGORY_MATH:
+					 mathCourses.push(schedule[i][j]);
+					break;
+				case CATEGORY_SCIENCE:
+					 scienceCourses.push(schedule[i][j]);
+					break;
+				case CATEGORY_COEN:
+					 coenCourses.push(schedule[i][j]);
+					break;
+				case CATEGORY_CORE:
+					 coreCourses.push(schedule[i][j]);
+					break;
+			}			
+		}
+		
+		// TODO second level organizing
+		
+		sorted.push(coenCourses.concat(mathCourses).concat(scienceCourses).concat(coreCourses));
+	}
+	return sorted;
+}
