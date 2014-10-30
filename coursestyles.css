@@ -2,121 +2,110 @@
  * GENERAL
  */
 #containerDiv {
-	margin: 20px;
-	font-family: 'Open Sans', sans-serif;
+    margin: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #content {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .stageDiv {
-	margin:20px;
-	margin-top: 80px;
+    padding: 20px;
 }
 
 /*
  * TITLE
  */
 #titleText {
-	font-family: Marvel;
-	font-size: 36px;
-	text-align: center; 
+    font-family: Marvel;
+    font-size: 36px;
+    text-align: center;
 }
 
 /*
  * PICK MAJOR
  */
 #pickMajorDiv {
-	width: 60%;
-	margin: 0 auto;
+    width: 60%;
+    margin: 0 auto;
+}
+
+#pickMajorDiv div {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    width: 49%;
+
+    background-color: #CAD0D5;
 }
 
 #coenMajor {
-	padding-top: 20px;
-	padding-bottom: 20px;
-
-	width: 49%;
-	float: left;
-
-	background-color: #CAD0D5;
+    float:left;
 }
 
 #webMajor {
-	padding-top: 20px;
-	padding-bottom: 20px;
-
-	width: 49%;
-	float: right;
-
-	background-color: #CAD0D5;
+    float:right;
 }
 
-#coenMajor:hover {
-	background-color: #B2E0FF;
+#pickMajorDiv div:hover {
+    background-color: #B2E0FF;
 }
 
-#webMajor:hover {
-	background-color: #B2E0FF;
+#pickMajorDiv div:active {
+    background-color: #8EB3CC;
 }
 
-#coenMajor:active {
-	background-color: #8EB3CC;
-}
-
-#webMajor:active {
-	background-color: #8EB3CC;
+#majorCertaintyQuestion {
+    padding-top: 80px;
 }
 
 /*
  * PICK AP
  */
+
 .apScoreNums {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .apScoreNums:hover {
-	color: #33ADFF;
-}
-
-.apSelectedScore {
-	background-color: blue;
+    color: #33ADFF;
 }
 
 #apClassTable {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 #apClassTable td {
-	padding: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	margin: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 20px;
 }
 
 /*
  * PICK TRANSFER CREDITS
  */
 #transferCreditsTable {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 #transferCreditsTable td {
-	padding-left: 10px;
-	padding-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /*
  * SCHEDULE
  */
 #scheduleTable {
-	margin: 0 auto;
-	border: 2px solid black;
+    margin: 0 auto;
+    border: 2px solid black;
 }
 
 #scheduleTable td {
-	padding: 10px;
-	border: 1px solid black;
+    padding: 10px;
+    border: 1px solid black;
 }
