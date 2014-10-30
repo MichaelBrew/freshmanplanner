@@ -38,13 +38,12 @@ function course(title, category, availableQuarters, prereqs) {
  *			course[] coreCourses,
  *			course[] apCredits (AP credits need to be transformed to course array beforehand)
  *			course[] transferCredits,
- *			boolean programmingExp (whether or not student should pass out of coen10),
  *			boolean sureOfMajor (if false ENG1 should be in the fall)
  */
 function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
-		apCredits, transferCredits, programmingExp, sureOfMajor) {
+		apCredits, transferCredits, sureOfMajor) {
 	// eliminate transfer courses
-	//removeTransferCourses(mathCourses, scienceCourses, coenCourses, apCredits, transferCredits, programmingExp);
+	removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCourses, apCredits, transferCredits);
 
 	// Build fall schedule
 	var fall = [];
@@ -76,8 +75,8 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	var winter = [];
 
 	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	var preferedCategories = [mathCourses, scienceCourses, coreCourses];
-	var course = getAvailableCourse(preferedCategories, WINTER);
+	preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	course = getAvailableCourse(preferedCategories, WINTER);
 	winter.push(course);
 	//alert("added(math slot)"+course.title);	
 	
@@ -102,7 +101,8 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	// Update preqs based on classes taken in the fall
 	updatePrereqs(winter, mathCourses, scienceCourses, coenCourses, coreCourses);
 	
-	// TODO if added core twice make CI
+	// Check if added core twice make CI
+	var ci = checkForCI(fall, winter);
 	
 	// Add eng1 to fall or winter based on difficulty of sched or certainty of major
 	// TODO
@@ -111,8 +111,8 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	var spring = [];
 	
 	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	var preferedCategories = [mathCourses, scienceCourses, coreCourses];
-	var course = getAvailableCourse(preferedCategories, SPRING);
+	preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	course = getAvailableCourse(preferedCategories, SPRING);
 	spring.push(course);
 	
 	// SCIENCE slot. Can be filled with MATH or CORE if no more science to take.
@@ -130,18 +130,18 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	course = getAvailableCourse(preferedCategories, SPRING);	
 	spring.push(course);
 	
-	// TODO if added core twice make CI
+	// Check if added core twice make CI
+	if (!ci) {
+		checkForCI(winter, spring);
+	}
 	
 	var courses = [fall, winter, spring];
 	return courses;
 }
 
-function removeTransferCourses(mathCourses, scienceCourses, coenCourses, apCredits, transferCredits, programmingExperience) {
-	if (programmingExperience) {
-		// TODO remove coen 10
-	}
-	//var incomingCourses = apCredits.concat(transferCredits);
-	// TODO implement
+function removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCourses, apCredits, transferCredits) {
+	var incomingCourses = apCredits.concat(transferCredits);
+	updatePrereqs(incomingCourses, mathCourses, scienceCourses, coenCourses, coreCourses);	
 }
 
 function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, coreCourses) {
@@ -168,6 +168,11 @@ function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, c
 		
 		// Search for taken course as prereq in relevant courses 
 		for (var j = 0; j < relevantCourses.length; j++) {
+			// Ensure taken courses are marked as used
+			if (relevantCourses[j].title == coursesTaken[i].title) {
+				relevantCourses[j].used = true;
+			}
+			// Remove taken course as prereqs for other courses
 			for (var k = 0; k < relevantCourses[j].prereqs.length; k++) {
 				if (relevantCourses[j].prereqs[k].title == coursesTaken[i].title) {
 					relevantCourses[j].prereqs.splice(0, k+1);
@@ -177,6 +182,11 @@ function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, c
 	}	
 }
 
+/* Picks the next course to take.
+ * Parameters:
+ * course[][] courseList (first index represents category in order of decreasing preference)
+ * int quarter
+ */
 function getAvailableCourse(courseList, quarter) {
 	// Try to pick a course from the preferred category first
 	for (var i = 0; i < courseList.length; i++) {
@@ -196,7 +206,22 @@ function getAvailableCourse(courseList, quarter) {
 	}
 }
 
+function checkForCI(quarter1Courses, quarter2Courses) {
 
+	for (var i = 0; i < quarter1Courses.length; i++) {
+		if (quarter1Courses[i].title == "CORE") {
+			for (var j = 0; j < quarter2Courses.length; j++) {
+				if (quarter2Courses[j].title == "CORE") {
+					quarter1Courses[i].title = "C&I 1";
+					quarter2Courses[i].title = "C&I 2";
+					return true;
+				}
+			}
+		}	
+	}
+	
+	return false;
+}
 
 
 
@@ -233,7 +258,15 @@ function test() {
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 
 	var coreClasses = [ctw1, ctw2, core];
-	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], [], false, true);
+	
+	var transferchem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,true,true], []);
+	var transferphys31 = new course("PHYS 31", CATEGORY_SCIENCE, [true,true,true], []);
+	var transferphys32 = new course("PHYS 32", CATEGORY_SCIENCE, [true,true,true], []);
+	
+	var transferCourses = [transferchem11, transferphys31, transferphys32];
+	
+	
+	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCourses, false, true);
 
 	alert("fall: " + sched[0][0].title + sched[0][1].title + sched[0][2].title +sched[0][3].title);
 	alert("winter: " + sched[1][0].title + sched[1][1].title + sched[1][2].title +sched[1][3].title);
