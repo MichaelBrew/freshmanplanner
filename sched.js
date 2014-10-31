@@ -145,37 +145,18 @@ function removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCou
 }
 
 function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, coreCourses) {
+	var allCourses = mathCourses.concat(scienceCourses).concat(coenCourses).concat(coreCourses);
 	for (var i = 0; i < coursesTaken.length; i++) {
-		var relevantCourses;
-		
-		// Select relevant courses
-		switch (coursesTaken[i].category) {
-			case CATEGORY_MATH:
-				relevantCourses = mathCourses;
-				break;
-			case CATEGORY_SCIENCE:
-				relevantCourses = scienceCourses;
-				break;
-			case CATEGORY_COEN:
-				relevantCourses = coenCourses;
-				break;
-			case CATEGORY_CORE:
-				relevantCourses = coreCourses;
-				break;
-			default:
-				return;
-		}
-		
-		// Search for taken course as prereq in relevant courses 
-		for (var j = 0; j < relevantCourses.length; j++) {
+		// Search for taken course as prereq in allCourses 
+		for (var j = 0; j < allCourses.length; j++) {
 			// Ensure taken courses are marked as used
-			if (relevantCourses[j].title == coursesTaken[i].title) {
-				relevantCourses[j].used = true;
+			if (allCourses[j].title == coursesTaken[i].title) {
+				allCourses[j].used = true;
 			}
 			// Remove taken course as prereqs for other courses
-			for (var k = 0; k < relevantCourses[j].prereqs.length; k++) {
-				if (relevantCourses[j].prereqs[k].title == coursesTaken[i].title) {
-					relevantCourses[j].prereqs.splice(0, k+1);
+			for (var k = 0; k < allCourses[j].prereqs.length; k++) {
+				if (allCourses[j].prereqs[k].title == coursesTaken[i].title) {
+					allCourses[j].prereqs.splice(0, k+1);
 				}
 			}
 		}
@@ -250,15 +231,20 @@ function test() {
 
 	var mathClasses = [math11, math12, math13, math14, math53];
 
-	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,true,true], []);
-	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [true,true,true], []);
-	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [true,true,true], [phys31]);
-	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,true,true], [phys32]);
-
-	var scienceClasses = [chem11, phys31, phys32, phys33];
+	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
+	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
+	/* TODO: technically math12 a pre/co requisite for 32. While it shouldn't be a problem b/c 
+	 * 31 requires 11 a student could technically have 31 ap credit and not 11 ap credit. 
+	 * Need to change existing alg to allow for coreqs./
+	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
+	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
+	// phys33 is put ahead of chem11 because order in the array breaks ties and if user 
+	// has incoming credit for 31 & 32 we  prefer they take phys33 first rather than wait
+	// a year
+	var scienceClasses = [phys33, chem11, phys31, phys32];
 
 	var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
-	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]);
+	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 
 	var coreClasses = [ctw1, ctw2, core];	
