@@ -235,7 +235,7 @@ function test() {
 	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
 	/* TODO: technically math12 a pre/co requisite for 32. While it shouldn't be a problem b/c 
 	 * 31 requires 11 a student could technically have 31 ap credit and not 11 ap credit. 
-	 * Need to change existing alg to allow for coreqs./
+	 * Need to change existing alg to allow for coreqs. */
 	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
 	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
 	// phys33 is put ahead of chem11 because order in the array breaks ties and if user 
