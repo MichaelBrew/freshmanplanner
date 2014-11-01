@@ -157,7 +157,7 @@ function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, c
 			// Remove taken course as prereqs for other courses
 			for (var k = 0; k < allCourses[j].prereqs.length; k++) {
 				if (allCourses[j].prereqs[k].title == coursesTaken[i].title) {
-					allCourses[j].prereqs.splice(0, k+1);
+					allCourses[j].prereqs.splice(k, 1);
 				}
 			}
 		}
