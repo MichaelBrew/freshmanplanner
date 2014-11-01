@@ -38,10 +38,11 @@ function course(title, category, availableQuarters, prereqs) {
  *			course[] coreCourses,
  *			course[] apCredits (AP credits need to be transformed to course array beforehand)
  *			course[] transferCredits,
- *			boolean sureOfMajor (if false ENG1 should be in the fall)
+ *			boolean sureOfMajor (if false ENG1 should be in the fall),
+ *			course eng1
  */
 function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
-		apCredits, transferCredits, sureOfMajor) {
+		apCredits, transferCredits, sureOfMajor, eng1) {
 	// eliminate transfer courses
 	removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCourses, apCredits, transferCredits);
 
@@ -67,7 +68,7 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	preferedCategories = [coreCourses];
 	course = getAvailableCourse(preferedCategories, FALL);
 	fall.push(course);
-
+	
 	// Update preqs based on classes taken in the fall
 	updatePrereqs(fall, mathCourses, scienceCourses, coenCourses, coreCourses);
 	
@@ -105,7 +106,7 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
 	var ci = checkForCI(fall, winter);
 	
 	// Add eng1 to fall or winter based on difficulty of sched or certainty of major
-	// TODO
+	addEngineering1(fall, winter, sureOfMajor, eng1);
 		
 	// Build spring schedule
 	var spring = [];
@@ -187,6 +188,64 @@ function getAvailableCourse(courseList, quarter) {
 	}
 }
 
+/* Add eng1 to fall or winter based on difficulty of sched or certainty of major
+ * Parameters:
+ * course[] fall
+ * course[] winter
+ * boolean sureOfMajor
+ * course eng1
+ */
+function addEngineering1(fall, winter, sureOfMajor, eng1) {
+	if (!sureOfMajor) {
+		fall.push(eng1);
+		return;
+	}
+
+	var MATH_INDEX = 0;
+	var SCIENCE_INDEX = 1;
+	var COEN_INDEX = 2;
+		
+	// Helper function to return int[] of number of math, sci, and coen courses a quarter has
+	function countCategories(courseList) {
+		var categories = [0,0,0];
+		for (var i = 0; i < courseList.length; i++) {
+			switch (courseList[i].category) {
+				case CATEGORY_MATH:
+					categories[MATH_INDEX] = categories[MATH_INDEX] + 1;
+					break;
+				case CATEGORY_SCIENCE:
+					categories[SCIENCE_INDEX] = categories[SCIENCE_INDEX] + 1;
+					break;
+				case CATEGORY_COEN:
+					categories[COEN_INDEX] = categories[COEN_INDEX] + 1;
+					break;										
+			}
+		}
+		return categories;
+	}
+	
+	var fallCategories = countCategories(fall);
+	var winterCategories = countCategories(winter);
+	
+	var fallLabs = fallCategories[SCIENCE_INDEX] + fallCategories[COEN_INDEX];
+	var winterLabs = winterCategories[SCIENCE_INDEX] + winterCategories[COEN_INDEX];
+
+	/* Assign quarter with less labs eng1. 
+	 * If equal number of labs assign the quarter with less technical classes (coen, sci, math).
+	 * If even, assign eng1 to the fall */
+	if (fallLabs > winterLabs) {
+		winter.push(eng1);
+	} else if (fallLabs < winterLabs) {
+		fall.push(eng1);
+	} else if (fallCategories[MATH_INDEX] > winterCategories[MATH_INDEX]) {
+		winter.push(eng1);
+	} else if (fallCategories[MATH_INDEX] < winterCategories[MATH_INDEX]) {
+		fall.push(eng1);
+	} else {
+		fall.push(eng1);
+	}
+}
+
 function checkForCI(quarter1Courses, quarter2Courses) {
 
 	for (var i = 0; i < quarter1Courses.length; i++) {
@@ -209,12 +268,9 @@ function checkForCI(quarter1Courses, quarter2Courses) {
 
 
 
-
-function getTransferCredits() {
-						
-}
-
 function test() {
+	var eng1 = new course("ENGR 1", CATEGORY_COEN, [true, true, false], []);
+
 	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
 	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
 	var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
@@ -222,6 +278,7 @@ function test() {
 
 	var coenClasses = [coen10, coen11, coen12, coen19];
 
+	var math9 = new course("MATH 9", CATEGORY_MATH, [true, false, false], []);
 	var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
 	var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
 	var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math12]);
@@ -276,11 +333,14 @@ function test() {
 	if (document.getElementById("checkCoen19").checked)
 		transferCredits.push(coen19);	
 	
-	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, false, true);
+	// TODO add aps
+	
+	// TODO push math9 if selected and make math9 a prereq for 11
+	
+	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
 	var sortedSched = sortSched(sched);
 
 	// Display schedule on table
-	// TODO need way to add ENG1 cell
 	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
 	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
 	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
@@ -295,6 +355,15 @@ function test() {
 	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
 	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
 	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
+	
+	// Add eng1 cell
+	if (sortedSched[0].length == 5) {
+		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
+		document.getElementById("winter4").innerHTML = "";
+	} else if (sortedSched[1].length == 5) {
+		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
+		document.getElementById("fall4").innerHTML = "";
+	}
 }
 
 /* Takes freshman schedule and returns a schedule sorted by category
@@ -331,9 +400,19 @@ function sortSched(schedule) {
 			}			
 		}
 		
-		// TODO second level organizing
+		// TODO more second level organizing
 		
 		sorted.push(coenCourses.concat(mathCourses).concat(scienceCourses).concat(coreCourses));
+		
+		// Put ENG1 at the bottom of the list
+		for (var j = 0; j < sorted[i].length; j++) {
+			if (sorted[i][j].title == "ENGR 1") {
+				var temp = sorted[i].splice(j, 1);
+				sorted[i].push(temp[0]);
+				break;
+			}
+		}
+		
 	}
 	return sorted;
 }
