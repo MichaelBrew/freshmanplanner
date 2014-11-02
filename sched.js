@@ -416,3 +416,122 @@ function sortSched(schedule) {
 	}
 	return sorted;
 }
+
+function updateMajor() {
+    // TODO: change schedule based on selected major
+    // For the initial system, only has to work with COEN
+}
+
+function updateApScores(scoreButton) {
+	var apScores = [];
+    var subject = $( scoreButton ).parent().attr("id");
+
+    if (subject == "calcAbButtons") {
+        apScores["calcAb"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "enviroButtons") {
+        apScores["enviro"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "calcBcButtons") {
+        apScores["calcBc"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "physCElectricButtons") {
+        apScores["physElectric"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "chemButtons") {
+        apScores["chem"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "physCMechanicsButtons") {
+        apScores["physMechanics"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "compButtons") {
+        apScores["compSci"] = scoreButton.firstChild.nodeValue;
+    }
+
+    updateSchedule();
+}
+
+function updateTransferCredits() {
+    // COEN
+    // TODO: make some global arrays of all available COEN, MATH, science courses
+    // so their course info can be accessed easily
+    var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
+    var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
+    var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
+    var coen19 = new course("COEN 19", CATEGORY_COEN, [true, false, true], []);
+
+    var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
+    var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
+    var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math12]);
+    var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math13]);
+
+    var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
+    var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
+    var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]);
+
+    if (document.getElementById("checkMath11").checked)
+        transferCredits.push(math11);
+    if (document.getElementById("checkMath12").checked)
+        transferCredits.push(math12);
+    if (document.getElementById("checkMath13").checked)
+        transferCredits.push(math13);
+    if (document.getElementById("checkMath14").checked)
+        transferCredits.push(math14);
+    if (document.getElementById("checkChem11").checked)
+        transferCredits.push(chem11);
+    if (document.getElementById("checkPhys31").checked)
+        transferCredits.push(phys31);
+    if (document.getElementById("checkPhys32").checked)
+        transferCredits.push(phys32);
+    if (document.getElementById("checkPhys33").checked)
+        transferCredits.push(phys33);
+    if (document.getElementById("checkCoen10").checked)
+        transferCredits.push(coen10);
+    if (document.getElementById("checkCoen11").checked)
+        transferCredits.push(coen11);
+    if (document.getElementById("checkCoen12").checked)
+        transferCredits.push(coen12);
+    if (document.getElementById("checkCoen19").checked)
+        transferCredits.push(coen19);
+
+    updateSchedule();
+}
+
+function updateCalcReadiness(readinessButton) {
+	var calcRecommend9;
+
+    if ($( readinessButton ).attr("id") == "calcReady9Button") {
+        calcRecommend9 = true;
+    } else {
+        calcRecommend9 = false;
+    }
+
+    updateSchedule();
+}
+
+function updateSchedule() {
+    var sched = buildSchedule();
+    sortedSchedule = sortSched(sched);
+
+    displaySchedule();
+}
+
+function displaySchedule() {
+	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
+	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
+	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
+	document.getElementById("fall3").innerHTML = sortedSched[0][3].title;
+
+	document.getElementById("winter0").innerHTML = sortedSched[1][0].title;
+	document.getElementById("winter1").innerHTML = sortedSched[1][1].title;
+	document.getElementById("winter2").innerHTML = sortedSched[1][2].title;
+	document.getElementById("winter3").innerHTML = sortedSched[1][3].title;
+
+	document.getElementById("spring0").innerHTML = sortedSched[2][0].title;
+	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
+	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
+	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
+
+	// Add eng1 cell
+	if (sortedSched[0].length == 5) {
+		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
+		document.getElementById("winter4").innerHTML = "";
+	} else if (sortedSched[1].length == 5) {
+		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
+		document.getElementById("fall4").innerHTML = "";
+	}
+}
