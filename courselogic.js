@@ -117,12 +117,14 @@ $( "#webMajor" ).click(function() {
 });
 
 $( "#yesMayChangeMajorButton" ).click(function() {
+	updateSchedule();
     if (currentStep == 0) {
         moveToAp();
     }
 });
 
 $( "#noMayChangeMajorButton" ).click(function() {
+	updateSchedule();
     if (currentStep == 0) {
         moveToAp();
     }
@@ -156,10 +158,12 @@ $( "#doneTransferButton" ).click(function() {
 /*****************************/
 
 $( "#calcReady9Button" ).click(function() {
+    updateSchedule();
     moveToSchedule();
 });
 
 $( "#calcReady11Button" ).click(function() {
+    updateSchedule();
     moveToSchedule();
 });
 
