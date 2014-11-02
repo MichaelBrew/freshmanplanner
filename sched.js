@@ -163,10 +163,10 @@ function getApCreditsFromScores(apScores) {
 	if ("calcAb" in apScores) {
 		var score = apScores["calcAb"];
 		switch (score) {
-			case 4:
+			case "4":
 				apCredits.push(math11);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(math11);
 				break;
 			default:
@@ -176,10 +176,10 @@ function getApCreditsFromScores(apScores) {
 	if ("enviro" in apScores) {
 		var score = apScores["enviro"];
 		switch (score) {
-			case 4:
+			case "4":
 				apCredits.push(chem11);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(chem11);
 				break;
 			default:
@@ -189,14 +189,14 @@ function getApCreditsFromScores(apScores) {
 	if ("calcBc" in apScores) {
 		var score = apScores["calcBc"];
 		switch (score) {
-			case 3:
+			case "3":
 				apCredits.push(math11);
 				break;
-			case 4:
+			case "4":
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
@@ -207,10 +207,10 @@ function getApCreditsFromScores(apScores) {
 	if ("physElectric" in apScores) {
 		var score = apScores["physElectric"];
 		switch (score) {
-			case 4:
+			case "4":
 				apCredits.push(phys33);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(phys33);
 				break;
 			default:
@@ -220,13 +220,13 @@ function getApCreditsFromScores(apScores) {
 	if ("chem" in apScores) {
 		var score = apScores["chem"];
 		switch (score) {
-			case 3:
+			case "3":
 				apCredits.push(chem11);
 				break;
-			case 4:
+			case "4":
 				apCredits.push(chem11);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(chem11);
 				break;
 			default:
@@ -236,10 +236,10 @@ function getApCreditsFromScores(apScores) {
 	if ("physMechanics" in apScores) {
 		var score = apScores["physMechanics"];
 		switch (score) {
-			case 4:
+			case "4":
 				apCredits.push(phys31);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(phys31);
 				break;
 			default:
@@ -249,14 +249,14 @@ function getApCreditsFromScores(apScores) {
 	if ("compSci" in apScores) {
 		var score = apScores["compSci"];
 		switch (score) {
-			case 3:
+			case "3":
 				apCredits.push(coen10);
 				break;
-			case 4:
+			case "4":
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
-			case 5:
+			case "5":
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
@@ -264,7 +264,7 @@ function getApCreditsFromScores(apScores) {
 				// not good enough
 		}
 	}
-	
+
 	return apCredits;
 }
 
@@ -522,26 +522,7 @@ function updateMajor() {
     // For the initial system, only has to work with COEN
 }
 
-function updateApScores(scoreButton) {
-	var apScores = [];
-    var subject = $( scoreButton ).parent().attr("id");
-
-    if (subject == "calcAbButtons") {
-        apScores["calcAb"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "enviroButtons") {
-        apScores["enviro"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "calcBcButtons") {
-        apScores["calcBc"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "physCElectricButtons") {
-        apScores["physElectric"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "chemButtons") {
-        apScores["chem"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "physCMechanicsButtons") {
-        apScores["physMechanics"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "compButtons") {
-        apScores["compSci"] = scoreButton.firstChild.nodeValue;
-    }
-
+function updateApScores() {
     updateSchedule();
 }
 
@@ -571,7 +552,6 @@ function updateSchedule() {
 	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
 	var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
 	var coen19 = new course("COEN 19", CATEGORY_COEN, [true, false, true], []);
-
 	var coenClasses = [coen10, coen11, coen12, coen19];
 
 	var math9 = new course("MATH 9", CATEGORY_MATH, [true, false, false], []);
@@ -581,7 +561,6 @@ function updateSchedule() {
 	var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math13]);
 	var math53 = new course("MATH 53", CATEGORY_MATH, [false, true, true], [math13]);
 	// TODO more courses
-
 	var mathClasses = [math11, math12, math13, math14, math53];
 
 	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
@@ -599,33 +578,25 @@ function updateSchedule() {
 	var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
 	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
-
 	var coreClasses = [ctw1, ctw2, core];
 
 	/********************/
 	/* CHECK AP CREDITS */
 	/********************/
-	// NOTE: This will not work yet because there's no sense of "scoreButton" here
-	// Going to convert all buttons to radio buttons, then just check the selection of 
-	// each section
 	var apScores = [];
-    var subject = "nothing";//$( scoreButton ).parent().attr("id");
+    var apSubjects = $( "form" );
 
-    if (subject == "calcAbButtons") {
-        apScores["calcAb"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "enviroButtons") {
-        apScores["enviro"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "calcBcButtons") {
-        apScores["calcBc"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "physCElectricButtons") {
-        apScores["physElectric"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "chemButtons") {
-        apScores["chem"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "physCMechanicsButtons") {
-        apScores["physMechanics"] = scoreButton.firstChild.nodeValue;
-    } else if (subject == "compButtons") {
-        apScores["compSci"] = scoreButton.firstChild.nodeValue;
-    }
+    $( "form" ).each(function() {
+		var subject = this;
+		var subjectName = $( this ).attr("id");
+		var buttons = $( subject ).children();
+		buttons.each(function(button) {
+			var button = this;
+			if (($( button ).attr("value") != "None") && ($( button ).is( ":checked" ))) {
+				apScores[subjectName] = $( button ).attr("value");
+			}
+		});
+	});
 
     var apCredits = getApCreditsFromScores(apScores);
 
