@@ -555,7 +555,7 @@ function updateSchedule() {
     }
     
     // get user's major certainty
-    var sureOfMajor = document.getElementById("yesMayChangeMajorButton").checked;
+    var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
     
     var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, sureOfMajor, eng1);
 	var sortedSched = sortSched(sched);
