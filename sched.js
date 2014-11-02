@@ -547,7 +547,17 @@ function updateSchedule() {
 	if (document.getElementById("checkCoen19").checked)
 		transferCredits.push(coen19);
 
-    var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
+    // push math9 if selected and make math9 a prereq for 11
+    var math9Needed = document.getElementById("calcReady9Button").checked;
+    if (math9Needed) {
+        math11.prereqs.push(math9);
+        mathClasses.unshift(math9);
+    }
+    
+    // get user's major certainty
+    var sureOfMajor = document.getElementById("yesMayChangeMajorButton").checked;
+    
+    var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, sureOfMajor, eng1);
 	var sortedSched = sortSched(sched);
 
     displaySchedule(sortedSched);
