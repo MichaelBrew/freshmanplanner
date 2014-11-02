@@ -159,6 +159,10 @@ $( "#doneApButton" ).click(function() {
 /* TRANSFER SELECTION */
 /**********************/
 
+$( ".transferCreditCheck" ).click(function() {
+    updateTransferCredits();
+})
+
 $( "#doneTransferButton" ).click(function() {
     moveToCalcReadiness();
 });

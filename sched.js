@@ -259,9 +259,9 @@ function checkForCI(quarter1Courses, quarter2Courses) {
 					return true;
 				}
 			}
-		}	
+		}
 	}
-	
+
 	return false;
 }
 
@@ -304,35 +304,35 @@ function test() {
 	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 
-	var coreClasses = [ctw1, ctw2, core];	
+	var coreClasses = [ctw1, ctw2, core];
 	
 	// Get user's transfer credits
 	var transferCredits = [];
 	if (document.getElementById("checkMath11").checked)
-		transferCredits.push(math11);	
+		transferCredits.push(math11);
 	if (document.getElementById("checkMath12").checked)
-		transferCredits.push(math12);	
+		transferCredits.push(math12);
 	if (document.getElementById("checkMath13").checked)
-		transferCredits.push(math13);	
+		transferCredits.push(math13);
 	if (document.getElementById("checkMath14").checked)
-		transferCredits.push(math14);	
+		transferCredits.push(math14);
 	if (document.getElementById("checkChem11").checked)
-		transferCredits.push(chem11);	
+		transferCredits.push(chem11);
 	if (document.getElementById("checkPhys31").checked)
-		transferCredits.push(phys31);					
+		transferCredits.push(phys31);
 	if (document.getElementById("checkPhys32").checked)
-		transferCredits.push(phys32);	
+		transferCredits.push(phys32);
 	if (document.getElementById("checkPhys33").checked)
 		transferCredits.push(phys33);
 	if (document.getElementById("checkCoen10").checked)
-		transferCredits.push(coen10);							
+		transferCredits.push(coen10);
 	if (document.getElementById("checkCoen11").checked)
-		transferCredits.push(coen11);	
+		transferCredits.push(coen11);
 	if (document.getElementById("checkCoen12").checked)
-		transferCredits.push(coen12);			
+		transferCredits.push(coen12);
 	if (document.getElementById("checkCoen19").checked)
-		transferCredits.push(coen19);	
-	
+		transferCredits.push(coen19);
+
 	// TODO add aps
 	
 	// TODO push math9 if selected and make math9 a prereq for 11
@@ -340,30 +340,7 @@ function test() {
 	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
 	var sortedSched = sortSched(sched);
 
-	// Display schedule on table
-	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
-	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
-	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
-	document.getElementById("fall3").innerHTML = sortedSched[0][3].title;
-
-	document.getElementById("winter0").innerHTML = sortedSched[1][0].title;
-	document.getElementById("winter1").innerHTML = sortedSched[1][1].title;
-	document.getElementById("winter2").innerHTML = sortedSched[1][2].title;
-	document.getElementById("winter3").innerHTML = sortedSched[1][3].title;
-
-	document.getElementById("spring0").innerHTML = sortedSched[2][0].title;
-	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
-	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
-	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
-	
-	// Add eng1 cell
-	if (sortedSched[0].length == 5) {
-		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
-		document.getElementById("winter4").innerHTML = "";
-	} else if (sortedSched[1].length == 5) {
-		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
-		document.getElementById("fall4").innerHTML = "";
-	}
+	displaySchedule(sortedSched);
 }
 
 /* Takes freshman schedule and returns a schedule sorted by category
@@ -449,6 +426,7 @@ function updateTransferCredits() {
     // COEN
     // TODO: make some global arrays of all available COEN, MATH, science courses
     // so their course info can be accessed easily
+    /*
     var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
     var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
     var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
@@ -487,6 +465,7 @@ function updateTransferCredits() {
         transferCredits.push(coen12);
     if (document.getElementById("checkCoen19").checked)
         transferCredits.push(coen19);
+    */
 
     updateSchedule();
 }
@@ -504,13 +483,77 @@ function updateCalcReadiness(readinessButton) {
 }
 
 function updateSchedule() {
-    var sched = buildSchedule();
-    sortedSchedule = sortSched(sched);
+	var eng1 = new course("ENGR 1", CATEGORY_COEN, [true, true, false], []);
 
-    displaySchedule();
+	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
+	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
+	var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
+	var coen19 = new course("COEN 19", CATEGORY_COEN, [true, false, true], []);
+
+	var coenClasses = [coen10, coen11, coen12, coen19];
+
+	var math9 = new course("MATH 9", CATEGORY_MATH, [true, false, false], []);
+	var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
+	var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
+	var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math12]);
+	var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math13]);
+	var math53 = new course("MATH 53", CATEGORY_MATH, [false, true, true], [math13]);
+	// TODO more courses
+
+	var mathClasses = [math11, math12, math13, math14, math53];
+
+	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
+	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
+	/* TODO: technically math12 a pre/co requisite for 32. While it shouldn't be a problem b/c 
+	 * 31 requires 11 a student could technically have 31 ap credit and not 11 ap credit. 
+	 * Need to change existing alg to allow for coreqs. */
+	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
+	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
+	// phys33 is put ahead of chem11 because order in the array breaks ties and if user 
+	// has incoming credit for 31 & 32 we  prefer they take phys33 first rather than wait
+	// a year
+	var scienceClasses = [phys33, chem11, phys31, phys32];
+
+	var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
+	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
+	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
+
+	var coreClasses = [ctw1, ctw2, core];
+	
+	// Get user's transfer credits
+	var transferCredits = [];
+	if (document.getElementById("checkMath11").checked)
+		transferCredits.push(math11);
+	if (document.getElementById("checkMath12").checked)
+		transferCredits.push(math12);
+	if (document.getElementById("checkMath13").checked)
+		transferCredits.push(math13);
+	if (document.getElementById("checkMath14").checked)
+		transferCredits.push(math14);
+	if (document.getElementById("checkChem11").checked)
+		transferCredits.push(chem11);
+	if (document.getElementById("checkPhys31").checked)
+		transferCredits.push(phys31);
+	if (document.getElementById("checkPhys32").checked)
+		transferCredits.push(phys32);
+	if (document.getElementById("checkPhys33").checked)
+		transferCredits.push(phys33);
+	if (document.getElementById("checkCoen10").checked)
+		transferCredits.push(coen10);
+	if (document.getElementById("checkCoen11").checked)
+		transferCredits.push(coen11);
+	if (document.getElementById("checkCoen12").checked)
+		transferCredits.push(coen12);
+	if (document.getElementById("checkCoen19").checked)
+		transferCredits.push(coen19);
+
+    var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
+	var sortedSched = sortSched(sched);
+
+    displaySchedule(sortedSched);
 }
 
-function displaySchedule() {
+function displaySchedule(sortedSched) {
 	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
 	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
 	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
@@ -535,3 +578,5 @@ function displaySchedule() {
 		document.getElementById("fall4").innerHTML = "";
 	}
 }
+
+updateSchedule();
