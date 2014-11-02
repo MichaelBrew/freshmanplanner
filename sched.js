@@ -145,6 +145,129 @@ function removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCou
 	updatePrereqs(incomingCourses, mathCourses, scienceCourses, coenCourses, coreCourses);	
 }
 
+function getApCreditsFromScores(apScores) {
+	var apCredits = [];
+
+	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
+	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
+	var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
+
+	var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
+	var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
+
+	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
+	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
+	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]);
+	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
+
+	if ("calcAb" in apScores) {
+		var score = apScores["calcAb"];
+		switch (score) {
+			case 4:
+				apCredits.push(math11);
+				break;
+			case 5:
+				apCredits.push(math11);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("enviro" in apScores) {
+		var score = apScores["enviro"];
+		switch (score) {
+			case 4:
+				apCredits.push(chem11);
+				break;
+			case 5:
+				apCredits.push(chem11);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("calcBc" in apScores) {
+		var score = apScores["calcBc"];
+		switch (score) {
+			case 3:
+				apCredits.push(math11);
+				break;
+			case 4:
+				apCredits.push(math11);
+				apCredits.push(math12);
+				break;
+			case 5:
+				apCredits.push(math11);
+				apCredits.push(math12);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("physElectric" in apScores) {
+		var score = apScores["physElectric"];
+		switch (score) {
+			case 4:
+				apCredits.push(phys33);
+				break;
+			case 5:
+				apCredits.push(phys33);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("chem" in apScores) {
+		var score = apScores["chem"];
+		switch (score) {
+			case 3:
+				apCredits.push(chem11);
+				break;
+			case 4:
+				apCredits.push(chem11);
+				break;
+			case 5:
+				apCredits.push(chem11);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("physMechanics" in apScores) {
+		var score = apScores["physMechanics"];
+		switch (score) {
+			case 4:
+				apCredits.push(phys31);
+				break;
+			case 5:
+				apCredits.push(phys31);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	if ("compSci" in apScores) {
+		var score = apScores["compSci"];
+		switch (score) {
+			case 3:
+				apCredits.push(coen10);
+				break;
+			case 4:
+				apCredits.push(coen10);
+				apCredits.push(coen11);
+				break;
+			case 5:
+				apCredits.push(coen10);
+				apCredits.push(coen11);
+				break;
+			default:
+				// not good enough
+		}
+	}
+	
+	return apCredits;
+}
+
 function updatePrereqs(coursesTaken, mathCourses, scienceCourses, coenCourses, coreCourses) {
 	var allCourses = mathCourses.concat(scienceCourses).concat(coenCourses).concat(coreCourses);
 	for (var i = 0; i < coursesTaken.length; i++) {
@@ -423,50 +546,6 @@ function updateApScores(scoreButton) {
 }
 
 function updateTransferCredits() {
-    // COEN
-    // TODO: make some global arrays of all available COEN, MATH, science courses
-    // so their course info can be accessed easily
-    /*
-    var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
-    var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
-    var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
-    var coen19 = new course("COEN 19", CATEGORY_COEN, [true, false, true], []);
-
-    var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
-    var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
-    var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math12]);
-    var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math13]);
-
-    var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
-    var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
-    var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]);
-
-    if (document.getElementById("checkMath11").checked)
-        transferCredits.push(math11);
-    if (document.getElementById("checkMath12").checked)
-        transferCredits.push(math12);
-    if (document.getElementById("checkMath13").checked)
-        transferCredits.push(math13);
-    if (document.getElementById("checkMath14").checked)
-        transferCredits.push(math14);
-    if (document.getElementById("checkChem11").checked)
-        transferCredits.push(chem11);
-    if (document.getElementById("checkPhys31").checked)
-        transferCredits.push(phys31);
-    if (document.getElementById("checkPhys32").checked)
-        transferCredits.push(phys32);
-    if (document.getElementById("checkPhys33").checked)
-        transferCredits.push(phys33);
-    if (document.getElementById("checkCoen10").checked)
-        transferCredits.push(coen10);
-    if (document.getElementById("checkCoen11").checked)
-        transferCredits.push(coen11);
-    if (document.getElementById("checkCoen12").checked)
-        transferCredits.push(coen12);
-    if (document.getElementById("checkCoen19").checked)
-        transferCredits.push(coen19);
-    */
-
     updateSchedule();
 }
 
@@ -483,6 +562,9 @@ function updateCalcReadiness(readinessButton) {
 }
 
 function updateSchedule() {
+	/*********************/
+	/* BUILD ALL COURSES */
+	/*********************/
 	var eng1 = new course("ENGR 1", CATEGORY_COEN, [true, true, false], []);
 
 	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
@@ -519,7 +601,37 @@ function updateSchedule() {
 	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 
 	var coreClasses = [ctw1, ctw2, core];
-	
+
+	/********************/
+	/* CHECK AP CREDITS */
+	/********************/
+	// NOTE: This will not work yet because there's no sense of "scoreButton" here
+	// Going to convert all buttons to radio buttons, then just check the selection of 
+	// each section
+	var apScores = [];
+    var subject = "nothing";//$( scoreButton ).parent().attr("id");
+
+    if (subject == "calcAbButtons") {
+        apScores["calcAb"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "enviroButtons") {
+        apScores["enviro"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "calcBcButtons") {
+        apScores["calcBc"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "physCElectricButtons") {
+        apScores["physElectric"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "chemButtons") {
+        apScores["chem"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "physCMechanicsButtons") {
+        apScores["physMechanics"] = scoreButton.firstChild.nodeValue;
+    } else if (subject == "compButtons") {
+        apScores["compSci"] = scoreButton.firstChild.nodeValue;
+    }
+
+    var apCredits = getApCreditsFromScores(apScores);
+
+	/**************************/
+	/* CHECK TRANSFER CREDITS */
+	/**************************/
 	// Get user's transfer credits
 	var transferCredits = [];
 	if (document.getElementById("checkMath11").checked)
@@ -547,7 +659,7 @@ function updateSchedule() {
 	if (document.getElementById("checkCoen19").checked)
 		transferCredits.push(coen19);
 
-    var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
+    var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, apCredits, transferCredits, true, eng1);
 	var sortedSched = sortSched(sched);
 
     displaySchedule(sortedSched);
