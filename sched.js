@@ -588,5 +588,3 @@ function displaySchedule(sortedSched) {
 		document.getElementById("fall4").innerHTML = "";
 	}
 }
-
-updateSchedule();
