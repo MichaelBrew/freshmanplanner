@@ -6,6 +6,7 @@
 
     <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" href="coursestyles.css">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
     <link href='http://fonts.googleapis.com/css?family=Lato|Marvel|Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- Linking jQuery -->
@@ -160,7 +161,7 @@
         </div>
 
         <div id="viewScheduleDiv" class="stageDiv">
-            <h3 class="stageTitle">5. Enjoy your first year at Santa Clara</h3>
+            <h3 id=scheduleTitle class="stageTitle">5. Enjoy your first year at Santa Clara</h3>
             <table id="scheduleTable">
                 <tr>
                     <td><b>Fall</b></td>
@@ -191,7 +192,7 @@
                     <td id = "fall4"></td>
                     <td id = "winter4"></td>
             </table>
-            <button id="printScheduleButton">Print</button>
+            <button id="printScheduleButton" onClick="window.print()">Print</button>
         </div>
     </div>
 </div>

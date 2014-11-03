@@ -1,0 +1,9 @@
+@media print{@page {size: landscape}}
+
+#pickMajorDiv, #pickApDiv, #pickTransferCreditsDiv, #calcReadyDiv, #printScheduleButton, #scheduleTitle, #titleText {
+	display:none;
+}
+
+table{
+	width: 100%
+}
