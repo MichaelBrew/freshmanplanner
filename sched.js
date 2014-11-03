@@ -793,8 +793,8 @@ function listCredits(apCredits, transferCredits){
 				contained = true;
 			}
 		}
-		if (!contained) {
-			uniqueTransfers.push(transferCredits[i]);
+		if (!contained && $.inArray(transferCredits[i].title, uniqueTransfers) == -1) {
+			uniqueTransfers.push(transferCredits[i].title);
 		}
 	}
 	
@@ -802,7 +802,7 @@ function listCredits(apCredits, transferCredits){
 	if (uniqueTransfers.length > 0){
 		transferOutput = "Transfer Credits:<br>";
 		for (var i = 0; i < uniqueTransfers.length; i++) {
-			transferOutput += uniqueTransfers[i].title + "<br>";
+			transferOutput += uniqueTransfers[i] + "<br>";
 		}
 	}
 
