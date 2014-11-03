@@ -22,7 +22,12 @@ function moveToTransfer() {
         opacity: 1.0
     }, 500);
 
-    $( "#pickTransferCreditsDiv" ).find("input").prop("disabled", false);
+    var checkBoxes = $( "#pickTransferCreditsDiv" ).find("input");
+    checkBoxes.each(function() {
+        if (!($( this ).prop("checked"))) {
+            $( this ).prop("disabled", false);
+        }
+    });
 
     $('html, body').animate({
         scrollTop: $( "#pickTransferCreditsDiv" ).offset().top
@@ -118,14 +123,14 @@ $( "#webMajor" ).click(function() {
 
 $( "#yesMayChangeMajorButton" ).click(function() {
 	updateSchedule();
-    if (currentStep == 0) {
+    if (currentStep == 0 && selectedMajor != "") {
         moveToAp();
     }
 });
 
 $( "#noMayChangeMajorButton" ).click(function() {
 	updateSchedule();
-    if (currentStep == 0) {
+    if (currentStep == 0 && selectedMajor != "") {
         moveToAp();
     }
 });

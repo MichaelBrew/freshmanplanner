@@ -9,6 +9,9 @@ var CATEGORY_SCIENCE = 1;
 var CATEGORY_COEN = 2;
 var CATEGORY_CORE = 3;
 
+// Basically a hack, should fix later
+var prevApCredits = [];
+
 /* Prototype for a course object.
  * Params: string title
  *		   int category (one of CATEGORY_MATH, _SCIENCE, _COEN, _CORE)
@@ -41,8 +44,7 @@ function course(title, category, availableQuarters, prereqs) {
  *			boolean sureOfMajor (if false ENG1 should be in the fall),
  *			course eng1
  */
-function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses,
-		apCredits, transferCredits, sureOfMajor, eng1) {
+function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses, apCredits, transferCredits, sureOfMajor, eng1) {
 	// eliminate transfer courses
 	removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCourses, apCredits, transferCredits);
 
@@ -388,84 +390,6 @@ function checkForCI(quarter1Courses, quarter2Courses) {
 	return false;
 }
 
-
-
-
-function test() {
-	var eng1 = new course("ENGR 1", CATEGORY_COEN, [true, true, false], []);
-
-	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
-	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
-	var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen11]);
-	var coen19 = new course("COEN 19", CATEGORY_COEN, [true, false, true], []);
-
-	var coenClasses = [coen10, coen11, coen12, coen19];
-
-	var math9 = new course("MATH 9", CATEGORY_MATH, [true, false, false], []);
-	var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], []);
-	var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math11]);
-	var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math12]);
-	var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math13]);
-	var math53 = new course("MATH 53", CATEGORY_MATH, [false, true, true], [math13]);
-	// TODO more courses
-
-	var mathClasses = [math11, math12, math13, math14, math53];
-
-	var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
-	var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
-	/* TODO: technically math12 a pre/co requisite for 32. While it shouldn't be a problem b/c 
-	 * 31 requires 11 a student could technically have 31 ap credit and not 11 ap credit. 
-	 * Need to change existing alg to allow for coreqs. */
-	var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
-	var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
-	// phys33 is put ahead of chem11 because order in the array breaks ties and if user 
-	// has incoming credit for 31 & 32 we  prefer they take phys33 first rather than wait
-	// a year
-	var scienceClasses = [phys33, chem11, phys31, phys32];
-
-	var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
-	var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
-	var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
-
-	var coreClasses = [ctw1, ctw2, core];
-	
-	// Get user's transfer credits
-	var transferCredits = [];
-	if (document.getElementById("checkMath11").checked)
-		transferCredits.push(math11);
-	if (document.getElementById("checkMath12").checked)
-		transferCredits.push(math12);
-	if (document.getElementById("checkMath13").checked)
-		transferCredits.push(math13);
-	if (document.getElementById("checkMath14").checked)
-		transferCredits.push(math14);
-	if (document.getElementById("checkChem11").checked)
-		transferCredits.push(chem11);
-	if (document.getElementById("checkPhys31").checked)
-		transferCredits.push(phys31);
-	if (document.getElementById("checkPhys32").checked)
-		transferCredits.push(phys32);
-	if (document.getElementById("checkPhys33").checked)
-		transferCredits.push(phys33);
-	if (document.getElementById("checkCoen10").checked)
-		transferCredits.push(coen10);
-	if (document.getElementById("checkCoen11").checked)
-		transferCredits.push(coen11);
-	if (document.getElementById("checkCoen12").checked)
-		transferCredits.push(coen12);
-	if (document.getElementById("checkCoen19").checked)
-		transferCredits.push(coen19);
-
-	// TODO add aps
-	
-	// TODO push math9 if selected and make math9 a prereq for 11
-	
-	var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, [], transferCredits, true, eng1);
-	var sortedSched = sortSched(sched);
-
-	displaySchedule(sortedSched);
-}
-
 /* Takes freshman schedule and returns a schedule sorted by category
  * Parameters:
  *	course[][] schedule (course[FALL] corresponds to fall courses and so on) 
@@ -515,6 +439,58 @@ function sortSched(schedule) {
 		
 	}
 	return sorted;
+}
+
+function checkTransferCreditsFromApCredits(apCredits) {
+	var coursesToDisable = [];
+	for (var i = 0 ; i < apCredits.length; i++) {
+		var course = apCredits[i];
+
+		switch (course.title) {
+			case "MATH 11":
+				coursesToDisable.push("#checkMath11");
+				break;
+			case "MATH 12":
+				coursesToDisable.push("#checkMath11");
+				coursesToDisable.push("#checkMath12");
+				break;
+			case "CHEM 11":
+				coursesToDisable.push("#checkChem11");
+				break;
+			case "COEN 10":
+				coursesToDisable.push("#checkCoen10");
+				break;
+			case "COEN 11":
+				coursesToDisable.push("#checkCoen10");
+				coursesToDisable.push("#checkCoen11");
+				break;
+			case "PHYS 31":
+				coursesToDisable.push("#checkPhys31");
+				break;
+			case "PHYS 33":
+				coursesToDisable.push("#checkPhys33");
+				break;
+			default:
+				// nada
+		}
+	}
+
+	for (var i = 0; i < coursesToDisable.length; i++) {
+		var course = coursesToDisable[i];
+		$( course ).prop("disabled", true);
+		$( course ).prop("checked", true);
+	}
+
+	for (var i = 0; i < prevApCredits.length; i++) {
+		var course = prevApCredits[i];
+
+		if (!(coursesToDisable.indexOf(course) > -1)) {
+			$( course ).prop("disabled", false);
+			$( course ).prop("checked", false);
+		}
+	}
+
+	prevApCredits = coursesToDisable;
 }
 
 function updateMajor() {
@@ -599,6 +575,8 @@ function updateSchedule() {
 	});
 
     var apCredits = getApCreditsFromScores(apScores);
+
+    checkTransferCreditsFromApCredits(apCredits);
 
 	/**************************/
 	/* CHECK TRANSFER CREDITS */
