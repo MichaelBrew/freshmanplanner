@@ -668,47 +668,53 @@ function updateSchedule() {
 
 function displaySchedule(sortedSched) {
 	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
-	colorCourse("fall0", sortedSched[0][0]);
+	colorCourse("fall0", sortedSched[0][0], false);
 	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
-	colorCourse("fall1", sortedSched[0][1]);
+	colorCourse("fall1", sortedSched[0][1], false);
 	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
-	colorCourse("fall2", sortedSched[0][2]);
+	colorCourse("fall2", sortedSched[0][2], false);
 	document.getElementById("fall3").innerHTML = sortedSched[0][3].title;
-	colorCourse("fall3", sortedSched[0][3]);
+	colorCourse("fall3", sortedSched[0][3], false);
 
 	document.getElementById("winter0").innerHTML = sortedSched[1][0].title;
-	colorCourse("winter0", sortedSched[1][0]);
+	colorCourse("winter0", sortedSched[1][0], false);
 	document.getElementById("winter1").innerHTML = sortedSched[1][1].title;
-	colorCourse("winter1", sortedSched[1][1]);
+	colorCourse("winter1", sortedSched[1][1], false);
 	document.getElementById("winter2").innerHTML = sortedSched[1][2].title;
-	colorCourse("winter2", sortedSched[1][2]);
+	colorCourse("winter2", sortedSched[1][2], false);
 	document.getElementById("winter3").innerHTML = sortedSched[1][3].title;
-	colorCourse("winter3", sortedSched[1][3]);
+	colorCourse("winter3", sortedSched[1][3], false);
 
 	document.getElementById("spring0").innerHTML = sortedSched[2][0].title;
-	colorCourse("spring0", sortedSched[2][0]);
+	colorCourse("spring0", sortedSched[2][0], false);
 	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
-	colorCourse("spring1", sortedSched[2][1]);
+	colorCourse("spring1", sortedSched[2][1], false);
 	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
-	colorCourse("spring2", sortedSched[2][2]);
+	colorCourse("spring2", sortedSched[2][2], false);
 	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
-	colorCourse("spring3", sortedSched[2][3]);
+	colorCourse("spring3", sortedSched[2][3], false);
 
 	// Add eng1 cell
 	if (sortedSched[0].length == 5) {
 		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
-		colorCourse("fall4", sortedSched[0][4]);
+		colorCourse("fall4", sortedSched[0][4], false);
 		document.getElementById("winter4").innerHTML = "";
+		colorCourse("winter4", sortedSched[0][4], true);
 	} else if (sortedSched[1].length == 5) {
 		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
-		colorCourse("winter4", sortedSched[1][4]);
+		colorCourse("winter4", sortedSched[1][4], false);
 		document.getElementById("fall4").innerHTML = "";
+		colorCourse("fall4", sortedSched[1][4], true);
 	}
 }
 
-function colorCourse(id, course) {
+function colorCourse(id, course, blank) {
 	id = "#" + id;
 
+	if (blank) {
+		$( id ).css("background-color", "white");
+		return;
+	}
 	// MATH & SCIENCE: blue
 	// COEN: green
 	// CORE: yellow
