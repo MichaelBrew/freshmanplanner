@@ -668,26 +668,57 @@ function updateSchedule() {
 
 function displaySchedule(sortedSched) {
 	document.getElementById("fall0").innerHTML = sortedSched[0][0].title;
+	colorCourse("fall0", sortedSched[0][0]);
 	document.getElementById("fall1").innerHTML = sortedSched[0][1].title;
+	colorCourse("fall1", sortedSched[0][1]);
 	document.getElementById("fall2").innerHTML = sortedSched[0][2].title;
+	colorCourse("fall2", sortedSched[0][2]);
 	document.getElementById("fall3").innerHTML = sortedSched[0][3].title;
+	colorCourse("fall3", sortedSched[0][3]);
 
 	document.getElementById("winter0").innerHTML = sortedSched[1][0].title;
+	colorCourse("winter0", sortedSched[1][0]);
 	document.getElementById("winter1").innerHTML = sortedSched[1][1].title;
+	colorCourse("winter1", sortedSched[1][1]);
 	document.getElementById("winter2").innerHTML = sortedSched[1][2].title;
+	colorCourse("winter2", sortedSched[1][2]);
 	document.getElementById("winter3").innerHTML = sortedSched[1][3].title;
+	colorCourse("winter3", sortedSched[1][3]);
 
 	document.getElementById("spring0").innerHTML = sortedSched[2][0].title;
+	colorCourse("spring0", sortedSched[2][0]);
 	document.getElementById("spring1").innerHTML = sortedSched[2][1].title;
+	colorCourse("spring1", sortedSched[2][1]);
 	document.getElementById("spring2").innerHTML = sortedSched[2][2].title;
+	colorCourse("spring2", sortedSched[2][2]);
 	document.getElementById("spring3").innerHTML = sortedSched[2][3].title;
+	colorCourse("spring3", sortedSched[2][3]);
 
 	// Add eng1 cell
 	if (sortedSched[0].length == 5) {
 		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
+		colorCourse("fall4", sortedSched[0][4]);
 		document.getElementById("winter4").innerHTML = "";
 	} else if (sortedSched[1].length == 5) {
 		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
+		colorCourse("winter4", sortedSched[1][4]);
 		document.getElementById("fall4").innerHTML = "";
+	}
+}
+
+function colorCourse(id, course) {
+	id = "#" + id;
+
+	// MATH & SCIENCE: blue
+	// COEN: green
+	// CORE: yellow
+	if (course.category == CATEGORY_MATH) {
+		$( id ).css("background-color", "#ADE2FF");
+	} else if (course.category == CATEGORY_SCIENCE) {
+		$( id ).css("background-color", "#ADE2FF");
+	} else if (course.category == CATEGORY_COEN) {
+		$( id ).css("background-color", "#C2FFC2");
+	} else {
+		$( id ).css("background-color", "#FBFFB3");
 	}
 }
