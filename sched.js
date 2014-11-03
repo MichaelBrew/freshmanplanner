@@ -594,17 +594,23 @@ function updateSchedule() {
 	}
 	if (document.getElementById("checkMath12").checked) {
 		$( "#checkMath11" ).prop("checked", true);
+		transferCredits.push(math11);
 		transferCredits.push(math12);
 	}
 	if (document.getElementById("checkMath13").checked) {
 		$( "#checkMath11" ).prop("checked", true);
 		$( "#checkMath12" ).prop("checked", true);
+		transferCredits.push(math11);
+		transferCredits.push(math12);
 		transferCredits.push(math13);
 	}
 	if (document.getElementById("checkMath14").checked) {
 		$( "#checkMath11" ).prop("checked", true);
 		$( "#checkMath12" ).prop("checked", true);
 		$( "#checkMath13" ).prop("checked", true);
+		transferCredits.push(math11);
+		transferCredits.push(math12);
+		transferCredits.push(math13);
 		transferCredits.push(math14);
 	}
 	if (document.getElementById("checkChem11").checked) {
@@ -624,11 +630,14 @@ function updateSchedule() {
 	}
 	if (document.getElementById("checkCoen11").checked) {
 		$( "#checkCoen10" ).prop("checked", true);
+		transferCredits.push(coen10);
 		transferCredits.push(coen11);
 	}
 	if (document.getElementById("checkCoen12").checked) {
 		$( "#checkCoen10" ).prop("checked", true);
 		$( "#checkCoen11" ).prop("checked", true);
+		transferCredits.push(coen10);
+		transferCredits.push(coen11);
 		transferCredits.push(coen12);
 	}
 	if (document.getElementById("checkCoen19").checked) {
