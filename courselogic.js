@@ -68,6 +68,18 @@ function moveToSchedule() {
     }, 1000);
 }
 
+/*
+* If users scrolls during a scroll animation, stop the animation
+* This is to prevent a bug where clicking "Done" multiple times leaves the
+* users stuck at the bottom of the page and can't scroll up
+*/
+$("html, body").bind("scroll mousedown DOMMouseScroll mousewheel keyup", function(e){
+    if ( e.which > 0 || e.type === "mousedown" || e.type === "mousewheel"){
+        console.log("Stooping animatinos because user SCROOOOLLLED");
+        $("html, body").stop(true, true);
+    }
+});
+
 /*******************/
 /* MAJOR SELECTION */
 /*******************/

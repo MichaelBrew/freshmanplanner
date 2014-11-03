@@ -3,7 +3,7 @@ Freshman Fastrack Task List
 FOR TUESDAY
 - (SAM) Printing functionality
 - (SAM) If PHYS 33 in fall, keep CHEM 13 in fall and push COEN 12 to winter if they have credit for COEN 10 & 11
-- (MICHAEL) Clicking Done button multiple times makes you unable to scroll up from schedule 
+- (MICHAEL) If browser is IE, prompt users to enable scripts
 
 - Color classes?
 - Blank class names before major selected?
