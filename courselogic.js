@@ -209,3 +209,13 @@ $( "#calcReady11Button" ).click(function() {
     $(children[3]).find("button").prop("disabled", true);
     $(children[4]).css("opacity", 0.2);
 }());
+
+// CHECK THIS ON WINDOWS COMPUTER WITH IE!
+(function() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        alert("Please make sure scripts are enabled to use this website, thank you!");
+    }
+}());
