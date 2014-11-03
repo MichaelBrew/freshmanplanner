@@ -1,6 +1,13 @@
 var selectedMajor = "";
 var currentStep = 0;
 
+function enableCertainty() {
+	$("#noMayChangeMajorButton").prop("disabled", false);
+	$("#yesMayChangeMajorButton").prop("disabled", false);
+    $("#majorCertaintyDiv").css("opacity", 1);
+
+}
+
 function moveToAp() {
     currentStep = 1;
 
@@ -128,6 +135,7 @@ $( "#coenMajor" ).click(function() {
     $( "#webMajor" ).css("background","#CAD0D5");
     $( "#webMajor" ).css("border", "none");
     $( "#webMajor" ).css("font-weight", "normal");
+    enableCertainty();
 });
 
 $( "#webMajor" ).click(function() {
@@ -139,6 +147,7 @@ $( "#webMajor" ).click(function() {
     $( "#coenMajor" ).css("background","#CAD0D5");
     $( "#coenMajor" ).css("border", "none");
     $( "#coenMajor" ).css("font-weight", "normal");
+    enableCertainty();
 });
 
 $( "#yesMayChangeMajorButton" ).click(function() {
@@ -201,13 +210,18 @@ $( "#calcReady11Button" ).click(function() {
     // TODO: Probably shouldn't hardcode eq(x)
     var children = $( "#content" ).children();
 
-    $(children[1]).css("opacity", 0.2);
-    $(children[1]).find("button").prop("disabled", true);
     $(children[2]).css("opacity", 0.2);
-    $(children[2]).find("input").prop("disabled", true);
+    $(children[2]).find("button").prop("disabled", true);
     $(children[3]).css("opacity", 0.2);
-    $(children[3]).find("button").prop("disabled", true);
+    $(children[3]).find("input").prop("disabled", true);
     $(children[4]).css("opacity", 0.2);
+    $(children[4]).find("button").prop("disabled", true);
+    $(children[5]).css("opacity", 0.2);
+
+    $ ("#noMayChangeMajorButton").prop("disabled", true);
+	$ ("#yesMayChangeMajorButton").prop("disabled", true);
+    $ ("#majorCertaintyDiv").css("opacity", 0.2);
+    
 }());
 
 // CHECK THIS ON WINDOWS COMPUTER WITH IE!
