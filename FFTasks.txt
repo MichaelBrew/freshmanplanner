@@ -4,9 +4,6 @@ FOR TUESDAY
 - (SAM) Printing functionality
 - (SAM) If PHYS 33 in fall, keep CHEM 13 in fall and push COEN 12 to winter if they have credit for COEN 10 & 11
 
-- Color classes?
-- Blank class names before major selected?
-
 
 FOR FINAL
 
