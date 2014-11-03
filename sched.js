@@ -64,8 +64,12 @@ function buildSchedule(mathCourses, scienceCourses, coenCourses, coreCourses, ap
 	course = getAvailableCourse(preferedCategories, FALL);
 	fall.push(course);
 
-	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	// COEN slot. If user has already taken coen10 prefer user finishes available science courses
+	if (coenCourses[0].title == "COEN 10" && !coenCourses[0].used) {
+		preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	} else {
+		preferedCategories = [scienceCourses, coenCourses, coreCourses];		
+	}
 	course = getAvailableCourse(preferedCategories, FALL);	
 	fall.push(course);
 	
