@@ -458,7 +458,7 @@ function checkTransferCreditsFromApCredits(apCredits) {
 				coursesToDisable.push("#checkMath11");
 				break;
 			case "MATH 12":
-				coursesToDisable.push("#checkMath11");
+				//coursesToDisable.push("#checkMath11");
 				coursesToDisable.push("#checkMath12");
 				break;
 			case "CHEM 11":
@@ -468,7 +468,7 @@ function checkTransferCreditsFromApCredits(apCredits) {
 				coursesToDisable.push("#checkCoen10");
 				break;
 			case "COEN 11":
-				coursesToDisable.push("#checkCoen10");
+				//coursesToDisable.push("#checkCoen10");
 				coursesToDisable.push("#checkCoen11");
 				break;
 			case "PHYS 31":
@@ -491,10 +491,18 @@ function checkTransferCreditsFromApCredits(apCredits) {
 	for (var i = 0; i < prevApCredits.length; i++) {
 		var course = prevApCredits[i];
 
-		if (!(coursesToDisable.indexOf(course) > -1)) {
+		//if (!(coursesToDisable.indexOf(course) > -1)) {
+		var contains = false;
+		for (var j = 0; j < coursesToDisable.length; j++) {
+			if (coursesToDisable[j] == course) {
+				contains = true;
+			}
+		}
+		if (!contains) {
 			$( course ).prop("disabled", false);
 			$( course ).prop("checked", false);
 		}
+		
 	}
 
 	prevApCredits = coursesToDisable;
