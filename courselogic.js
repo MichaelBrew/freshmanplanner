@@ -35,20 +35,28 @@ function moveToTransfer() {
 }
 
 function moveToCalcReadiness() {
-    currentStep = 3;
+    if(skipCalcReadiness) {
+        $('html, body').animate({
+            scrollTop: $( "#viewScheduleDiv" ).offset().top
+        }, 1000);
+        moveToSchedule();
+    } else {
+        currentStep = 3;
 
-    $( "#calcReadyDiv" ).animate({
-        opacity: 1.0
-    }, 500);
+        $( "#calcReadyDiv" ).animate({
+         opacity: 1.0
+        }, 500);
 
-    $( "#calcReadyDiv" ).find("button").prop("disabled", false);
+        $( "#calcReadyDiv" ).find("button").prop("disabled", false);
 
-    $('html, body').animate({
-        scrollTop: $( "#calcReadyDiv" ).offset().top
-    }, 1000);
+        $('html, body').animate({
+            scrollTop: $( "#calcReadyDiv" ).offset().top
+        }, 1000);
+    }
 }
 
 function moveToSchedule() {
+    movedToScheduleYet = true;
     currentStep = 4;
 
     $( "#viewScheduleDiv" ).animate({

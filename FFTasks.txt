@@ -3,7 +3,6 @@ Freshman Fastrack Task List
 FOR TUESDAY
 - (SAM) Printing functionality
 - (SAM) If PHYS 33 in fall, keep CHEM 13 in fall and push COEN 12 to winter if they have credit for COEN 10 & 11
-- (MICHAEL) Get rid of calc. readiness question if MATH 11+ is indicated in AP or transfer credit sections
 - (MICHAEL) Clicking Done button multiple times makes you unable to scroll up from schedule 
 
 - Color classes?

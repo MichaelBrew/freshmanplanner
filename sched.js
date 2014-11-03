@@ -12,6 +12,9 @@ var CATEGORY_CORE = 3;
 // Basically a hack, should fix later
 var prevApCredits = [];
 
+var movedToScheduleYet = false;
+var skipCalcReadiness = false;
+
 /* Prototype for a course object.
  * Params: string title
  *		   int category (one of CATEGORY_MATH, _SCIENCE, _COEN, _CORE)
@@ -628,12 +631,31 @@ function updateSchedule() {
 		transferCredits.push(coen19);
 	}
 
-    // push math9 if selected and make math9 a prereq for 11
-    var math9Needed = document.getElementById("calcReady9Button").checked;
-    if (math9Needed) {
-        math11.prereqs.push(math9);
-        mathClasses.unshift(math9);
-    }
+	/******************/
+	/* CALC READINESS */
+	/******************/
+	if (($( "#checkMath11" ).prop("checked")) || ($( "#checkMath12" ).prop("checked")) ||
+		($( "#checkMath13" ).prop("checked")) || ($( "#checkMath14" ).prop("checked"))) {
+		skipCalcReadiness = true;
+	} else {
+		skipCalcReadiness = false;
+	}
+
+	if (skipCalcReadiness) {
+		$( "#calcReadyDiv" ).css("opacity", "0.2");
+		$( "#calcReadyDiv" ).find("button").prop("disabled", true);
+	} else {
+		if (movedToScheduleYet) {
+			$( "#calcReadyDiv" ).css("opacity", "1.0");
+			$( "#calcReadyDiv" ).find("button").prop("disabled", false);
+		}
+		// push math9 if selected and make math9 a prereq for 11
+		var math9Needed = document.getElementById("calcReady9Button").checked;
+		if (math9Needed) {
+			math11.prereqs.push(math9);
+			mathClasses.unshift(math9);
+		}
+	}
     
     // get user's major certainty
     var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
