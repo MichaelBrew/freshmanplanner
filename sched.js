@@ -154,8 +154,12 @@ function removeTransferCourses(mathCourses, scienceCourses, coenCourses, coreCou
 	updatePrereqs(incomingCourses, mathCourses, scienceCourses, coenCourses, coreCourses);	
 }
 
+// TODO hacky remove after tuesday
+var incomingCredits = [];
+
 function getApCreditsFromScores(apScores) {
 	var apCredits = [];
+	incomingCredits = [];
 
 	var coen10 = new course("COEN 10", CATEGORY_COEN, [true, true, true], []);
 	var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
@@ -173,9 +177,11 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["calcAb"];
 		switch (score) {
 			case "4":
+				incomingCredits.push("Calc AB (Score 4): Math 11");
 				apCredits.push(math11);
 				break;
 			case "5":
+				incomingCredits.push("Calc AB (Score 5): Math 11");
 				apCredits.push(math11);
 				break;
 			default:
@@ -186,9 +192,11 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["enviro"];
 		switch (score) {
 			case "4":
+				incomingCredits.push("Environmental Science (Score 4): Chem 11 Substitution");
 				apCredits.push(chem11);
 				break;
 			case "5":
+				incomingCredits.push("Environmental Science (Score 4): Chem 11 Substitution");
 				apCredits.push(chem11);
 				break;
 			default:
@@ -199,13 +207,16 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["calcBc"];
 		switch (score) {
 			case "3":
+				incomingCredits.push("Calc BC (Score 3): Math 11");			
 				apCredits.push(math11);
 				break;
 			case "4":
+				incomingCredits.push("Calc BC (Score 4): Math 11 and Math 12");			
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
 			case "5":
+				incomingCredits.push("Calc BC (Score 5): Math 11 and Math 12");
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
@@ -217,9 +228,11 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["physElectric"];
 		switch (score) {
 			case "4":
+				incomingCredits.push("Physics EM (Score 4): Phys 33");
 				apCredits.push(phys33);
 				break;
 			case "5":
+				incomingCredits.push("Physics EM (Score 5): Phys 33");			
 				apCredits.push(phys33);
 				break;
 			default:
@@ -230,12 +243,15 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["chem"];
 		switch (score) {
 			case "3":
+				incomingCredits.push("Chemistry (Score 3): Chem 11");			
 				apCredits.push(chem11);
 				break;
 			case "4":
+				incomingCredits.push("Chemistry (Score 4): Chem 11");						
 				apCredits.push(chem11);
 				break;
 			case "5":
+				incomingCredits.push("Chemistry (Score 5): Chem 11");						
 				apCredits.push(chem11);
 				break;
 			default:
@@ -246,9 +262,11 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["physMechanics"];
 		switch (score) {
 			case "4":
+				incomingCredits.push("Physics EM (Score 4): Phys 31");						
 				apCredits.push(phys31);
 				break;
 			case "5":
+				incomingCredits.push("Physics EM (Score 5): Phys 31");									
 				apCredits.push(phys31);
 				break;
 			default:
@@ -259,13 +277,16 @@ function getApCreditsFromScores(apScores) {
 		var score = apScores["compSci"];
 		switch (score) {
 			case "3":
+				incomingCredits.push("Computer Science A (Score 3): Coen 10");									
 				apCredits.push(coen10);
 				break;
 			case "4":
+				incomingCredits.push("Computer Science A (Score 4): Coen 10 and Coen 11");												
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
 			case "5":
+				incomingCredits.push("Computer Science A (Score 5): Coen 10 and Coen 11");															
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
@@ -307,7 +328,7 @@ function getAvailableCourse(courseList, quarter) {
 		// Go through the available courses in the current category
 		for (var j = 0; j < courseList[i].length; j++) {
 		//alert("get@"+i+","+j);	
-			var course = courseList[i][j]
+			var course = courseList[i][j];
 			//alert("course title " + course.title);
 			//alert("course avail: " + course.availableQuarters[quarter]);
 			//alert("course elig: " + course.eligible());
@@ -681,6 +702,8 @@ function updateSchedule() {
     // get user's major certainty
     var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
     
+    listCredits(apCredits, transferCredits);
+    
     var sched = buildSchedule(mathClasses, scienceClasses, coenClasses, coreClasses, apCredits, transferCredits, sureOfMajor, eng1);
 	var sortedSched = sortSched(sched);
 
@@ -748,4 +771,41 @@ function colorCourse(id, course, blank) {
 	} else {
 		$( id ).css("background-color", "#FBFFB3");
 	}
+}
+
+function listCredits(apCredits, transferCredits){
+
+	var getElement = document.getElementById("creditsParagraph");
+	var output = "";
+
+	if (incomingCredits.length > 0){
+		output = "AP Credits:<br>";
+		for (var i = 0; i < incomingCredits.length; i++) {
+			output += incomingCredits[i] + "<br>";
+		}
+	}
+	
+	var uniqueTransfers = [];
+	for (var i = 0; i < transferCredits.length; i++) {
+		var contained = false;
+		for (var j = 0; j < apCredits.length; j++) {
+			if (transferCredits[i].title == apCredits[j].title) {
+				contained = true;
+			}
+		}
+		if (!contained) {
+			uniqueTransfers.push(transferCredits[i]);
+		}
+	}
+	
+	var transferOutput = "";
+	if (uniqueTransfers.length > 0){
+		transferOutput = "Transfer Credits:<br>";
+		for (var i = 0; i < uniqueTransfers.length; i++) {
+			transferOutput += uniqueTransfers[i].title + "<br>";
+		}
+	}
+
+	getElement.innerHTML = output+ transferOutput;
+	
 }
