@@ -581,32 +581,52 @@ function updateSchedule() {
 	/**************************/
 	/* CHECK TRANSFER CREDITS */
 	/**************************/
-	// Get user's transfer credits
 	var transferCredits = [];
-	if (document.getElementById("checkMath11").checked)
+	if (document.getElementById("checkMath11").checked) {
 		transferCredits.push(math11);
-	if (document.getElementById("checkMath12").checked)
+	}
+	if (document.getElementById("checkMath12").checked) {
+		$( "#checkMath11" ).prop("checked", true);
 		transferCredits.push(math12);
-	if (document.getElementById("checkMath13").checked)
+	}
+	if (document.getElementById("checkMath13").checked) {
+		$( "#checkMath11" ).prop("checked", true);
+		$( "#checkMath12" ).prop("checked", true);
 		transferCredits.push(math13);
-	if (document.getElementById("checkMath14").checked)
+	}
+	if (document.getElementById("checkMath14").checked) {
+		$( "#checkMath11" ).prop("checked", true);
+		$( "#checkMath12" ).prop("checked", true);
+		$( "#checkMath13" ).prop("checked", true);
 		transferCredits.push(math14);
-	if (document.getElementById("checkChem11").checked)
+	}
+	if (document.getElementById("checkChem11").checked) {
 		transferCredits.push(chem11);
-	if (document.getElementById("checkPhys31").checked)
+	}
+	if (document.getElementById("checkPhys31").checked) {
 		transferCredits.push(phys31);
-	if (document.getElementById("checkPhys32").checked)
+	}
+	if (document.getElementById("checkPhys32").checked) {
 		transferCredits.push(phys32);
-	if (document.getElementById("checkPhys33").checked)
+	}
+	if (document.getElementById("checkPhys33").checked) {
 		transferCredits.push(phys33);
-	if (document.getElementById("checkCoen10").checked)
+	}
+	if (document.getElementById("checkCoen10").checked) {
 		transferCredits.push(coen10);
-	if (document.getElementById("checkCoen11").checked)
+	}
+	if (document.getElementById("checkCoen11").checked) {
+		$( "#checkCoen10" ).prop("checked", true);
 		transferCredits.push(coen11);
-	if (document.getElementById("checkCoen12").checked)
+	}
+	if (document.getElementById("checkCoen12").checked) {
+		$( "#checkCoen10" ).prop("checked", true);
+		$( "#checkCoen11" ).prop("checked", true);
 		transferCredits.push(coen12);
-	if (document.getElementById("checkCoen19").checked)
+	}
+	if (document.getElementById("checkCoen19").checked) {
 		transferCredits.push(coen19);
+	}
 
     // push math9 if selected and make math9 a prereq for 11
     var math9Needed = document.getElementById("calcReady9Button").checked;
