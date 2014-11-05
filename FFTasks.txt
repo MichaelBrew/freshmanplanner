@@ -1,5 +1,11 @@
 Freshman Fastrack Task List
 
+TASKS
+- Remove major certainty question
+- Add math after MATH 53
+- Accordion style?
+
 BUGS
 - Major certainty question overlapping with the 2 major divs
-- All checkboxes and radio buttons need to be disabled if greyed out
+- CLEAR ALL INPUTS WHEN LOADING PAGES, SOME BROWSERS SAVE BUTTON STATES
+- Sometimes PHYS 33 replaces CHEM 11, not good
