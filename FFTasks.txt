@@ -4,6 +4,9 @@ TASKS
 - Remove major certainty question
 - Add math after MATH 53
 - Accordion style?
+- Remove PHYS 33 entirely from system. Freshmen NEVER take phys 33, period
+- Add CHEM 12 to transfer credit (can replace AMTH 106)
+- Look for all other APs and science classes that can exempt you from AMTH 106
 
 BUGS
 - Major certainty question overlapping with the 2 major divs
