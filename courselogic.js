@@ -15,6 +15,7 @@ function moveToAp() {
         opacity: 1.0
     }, 500);
 
+    $( "#pickApDiv" ).find("input").prop("disabled", false);
     $( "#pickApDiv" ).find("button").prop("disabled", false);
 
     $('html, body').animate({
@@ -36,6 +37,8 @@ function moveToTransfer() {
         }
     });
 
+    $( "#pickTransferCreditsDiv" ).find("button").prop("disabled", false);
+
     $('html, body').animate({
         scrollTop: $( "#pickTransferCreditsDiv" ).offset().top
     }, 1000);
@@ -54,6 +57,7 @@ function moveToCalcReadiness() {
          opacity: 1.0
         }, 500);
 
+        $( "#calcReadyDiv" ).find("input").prop("disabled", false);
         $( "#calcReadyDiv" ).find("button").prop("disabled", false);
 
         $('html, body').animate({
@@ -73,6 +77,8 @@ function moveToSchedule() {
     $('html, body').animate({
         scrollTop: $( "#viewScheduleDiv" ).offset().top
     }, 1000);
+
+    $( "#viewScheduleDiv" ).find("button").prop("disabled", false);
 }
 
 /*
@@ -212,11 +218,15 @@ $( "#calcReady11Button" ).click(function() {
 
     $(children[2]).css("opacity", 0.2);
     $(children[2]).find("input").prop("disabled", true);
+    $(children[2]).find("button").prop("disabled", true);
     $(children[3]).css("opacity", 0.2);
     $(children[3]).find("input").prop("disabled", true);
+    $(children[3]).find("button").prop("disabled", true);
     $(children[4]).css("opacity", 0.2);
     $(children[4]).find("input").prop("disabled", true);
+    $(children[4]).find("button").prop("disabled", true);
     $(children[5]).css("opacity", 0.2);
+    $(children[5]).find("button").prop("disabled", true);
 
     $ ("#noMayChangeMajorButton").prop("disabled", true);
 	$ ("#yesMayChangeMajorButton").prop("disabled", true);
