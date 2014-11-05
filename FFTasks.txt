@@ -1,14 +1,15 @@
 Freshman Fastrack Task List
 
 TASKS
-- Remove major certainty question
-- Add math after MATH 53
-- Accordion style?
-- Remove PHYS 33 entirely from system. Freshmen NEVER take phys 33, period
-- Add CHEM 12 to transfer credit (can replace AMTH 106)
-- Look for all other APs and science classes that can exempt you from AMTH 106
+- (MICHAEL) Remove major certainty question (UI and logic)
+- (SAM) Add math after MATH 53 (AMTH 106 & 108 before 53)
+- (SAM) Remove PHYS 33 entirely from system. Freshmen NEVER take phys 33, period
+- (MICHAEL) Add CHEM 12 to transfer credit (can replace AMTH 106)
+- (SAM) Look for all other APs and science classes that can exempt you from AMTH 106
 
 BUGS
-- Major certainty question overlapping with the 2 major divs
-- CLEAR ALL INPUTS WHEN LOADING PAGES, SOME BROWSERS SAVE BUTTON STATES
-- Sometimes PHYS 33 replaces CHEM 11, not good
+- (MICHAEL) Major certainty question overlapping with the 2 major divs
+- (MICHAEL) CLEAR ALL INPUTS WHEN LOADING PAGES, SOME BROWSERS SAVE BUTTON STATES
+
+QUESTION
+- Accordion style?
