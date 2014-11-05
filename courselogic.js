@@ -211,11 +211,11 @@ $( "#calcReady11Button" ).click(function() {
     var children = $( "#content" ).children();
 
     $(children[2]).css("opacity", 0.2);
-    $(children[2]).find("button").prop("disabled", true);
+    $(children[2]).find("input").prop("disabled", true);
     $(children[3]).css("opacity", 0.2);
     $(children[3]).find("input").prop("disabled", true);
     $(children[4]).css("opacity", 0.2);
-    $(children[4]).find("button").prop("disabled", true);
+    $(children[4]).find("input").prop("disabled", true);
     $(children[5]).css("opacity", 0.2);
 
     $ ("#noMayChangeMajorButton").prop("disabled", true);
