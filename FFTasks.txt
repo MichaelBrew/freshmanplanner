@@ -10,7 +10,6 @@ TASKS
 
 BUGS
 - (MICHAEL) Major certainty question overlapping with the 2 major divs
-- (MICHAEL) CLEAR ALL INPUTS WHEN LOADING PAGES, SOME BROWSERS SAVE BUTTON STATES
 
 QUESTION
 - Accordion style?

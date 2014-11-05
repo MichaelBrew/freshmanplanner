@@ -201,6 +201,18 @@ $( "#calcReady11Button" ).click(function() {
 /* GENERAL */
 /***********/
 
+(function clearAllInputs() {
+    var inputs = $( "input" );
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].checked = false;
+    }
+
+    var noneButtons = $( ".noneButton" );
+    for (var i = 0; i < noneButtons.length; i++) {
+        noneButtons[i].checked = true;
+    }
+}());
+
 (function disableElements() {
     // TODO: Probably shouldn't hardcode eq(x)
     var children = $( "#content" ).children();
