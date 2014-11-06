@@ -13,3 +13,14 @@ BUGS
 
 QUESTION
 - Accordion style?
+
+Other notes:
+-Add title to ap & transfers printout: “Waved Classes”
+-Add major title to printout
+-Calc readiness exam overrides incoming credits
+-Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
+-Prefer C&I sequence over 2 core separated
+-coen 12 almost always in spring
+-widen schedule
+-coen 19 never first quarter
+-grey out check boxes that are auto checked
