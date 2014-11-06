@@ -6,6 +6,6 @@ table{
     width: 100%
 }
 
-#creditsParagraph {
+#creditsParagraph, #printoutTitle {
 	display:block;
 }

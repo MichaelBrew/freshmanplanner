@@ -131,6 +131,9 @@ $( "#coenMajor" ).click(function() {
     $( "#webMajor" ).css("border", "none");
     $( "#webMajor" ).css("font-weight", "normal");
     enableCertainty();
+    if (currentStep > 0) {
+    	updateSchedule();
+    }
 });
 
 $( "#webMajor" ).click(function() {
@@ -143,6 +146,9 @@ $( "#webMajor" ).click(function() {
     $( "#coenMajor" ).css("border", "none");
     $( "#coenMajor" ).css("font-weight", "normal");
     enableCertainty();
+    if (currentStep > 0) {
+    	updateSchedule();
+    }
 });
 
 $( "#yesMayChangeMajorButton" ).click(function() {
@@ -424,6 +430,18 @@ function getTransferCredits() {
 	return transferCredits;
 }
 
+// Returns MAJOR_COEN, MAJOR_WEB, or ""
+function getMajor() {
+	switch (selectedMajor) {
+		case "coen":
+			return MAJOR_COEN;
+		case "web":
+			return MAJOR_WEB;
+		default:
+			return "";
+	}
+}
+
 /*********************/
 /* REACTING TO INPUT */
 /*********************/
@@ -445,7 +463,7 @@ function updateTransferCredits() {
 
 // Called after interaction with any element
 function updateSchedule() {
-	listCredits();
+	updatePrintout();
 
 	var transferCredits = getTransferCredits();
 	var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
@@ -455,7 +473,6 @@ function updateSchedule() {
 		transferCredits.unshift(math9);
 	}
 
- 	// TODO list credits for print out
 	var sched = buildSchedule(MAJOR_COEN, transferCredits, sureOfMajor);
 	displaySchedule(sched);
 }
@@ -528,15 +545,24 @@ function colorCourse(id, course, blank) {
 }
 
 var incomingCredits = [];
-function listCredits(){
+function updatePrintout(){
 	var apCredits = getApCredits();
 	var transferCredits = getTransferCredits();
 	
+	// Set title
+	var title = document.getElementById("printoutTitle");
+	title.innerHTML = getMajor();
+
+	// Set AP/Transfers list
 	var getElement = document.getElementById("creditsParagraph");
 	var output = "";
 
+	if (incomingCredits.length > 0 || apCredits.length > 0) {
+		output += "<b>Waved Classes:</b><br>";
+	}
+
 	if (incomingCredits.length > 0){
-		output = "AP Credits:<br>";
+		output += "<br><b>AP Credits:</b><br>";
 		for (var i = 0; i < incomingCredits.length; i++) {
 			output += incomingCredits[i] + "<br>";
 		}
@@ -555,15 +581,14 @@ function listCredits(){
 		}
 	}
 	
-	var transferOutput = "";
 	if (uniqueTransfers.length > 0){
-		transferOutput = "Transfer Credits:<br>";
+		output += "<br><b>Transfer Credits:</b><br>";
 		for (var i = 0; i < uniqueTransfers.length; i++) {
-			transferOutput += uniqueTransfers[i] + "<br>";
+			output += uniqueTransfers[i] + "<br>";
 		}
 	}
 
-	getElement.innerHTML = output+ transferOutput;	
+	getElement.innerHTML = output;	
 }
 
 function checkCalcReadiness() {

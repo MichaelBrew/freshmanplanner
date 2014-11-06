@@ -1,5 +1,4 @@
 // TODO enum instead
-var PRE = -1;
 var FALL = 0;
 var WINTER = 1;
 var SPRING = 2;
@@ -10,7 +9,8 @@ var CATEGORY_SCIENCE = 1;
 var CATEGORY_COEN = 2;
 var CATEGORY_CORE = 3;
 
-var MAJOR_COEN = 0;
+var MAJOR_COEN = "Computer Science & Engineering";
+var MAJOR_WEB = "Web Design & Engineering";
 /* Prototype for a course object.
  * Params: string title
  *		   int category (one of CATEGORY_MATH, _SCIENCE, _COEN, _CORE)
