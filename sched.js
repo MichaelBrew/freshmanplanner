@@ -11,13 +11,13 @@ function buildSchedule(major, incomingCredits, sureOfMajor) {
 	// Build fall schedule
 	var fall = [];
 	
-	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	var preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	// MATH slot. Can be filled with CORE if no more math to take.
+	var preferedCategories = [mathCourses, coreCourses];
 	var course = getAvailableCourse(fall, preferedCategories, FALL);
 	fall.push(course);
 
-	// SCIENCE slot. Can be filled with MATH or CORE if no more science to take.
-	preferedCategories = [scienceCourses, mathCourses, coreCourses];
+	// SCIENCE slot. Can be filled with CORE if no more science to take.
+	preferedCategories = [scienceCourses, coreCourses];
 	course = getAvailableCourse(fall, preferedCategories, FALL);
 	fall.push(course);
 
@@ -42,8 +42,8 @@ function buildSchedule(major, incomingCredits, sureOfMajor) {
 	course = getAvailableCourse(winter, preferedCategories, WINTER);
 	winter.push(course);
 	
-	// SCIENCE slot. Can be filled with MATH or CORE if no more science to take.
-	preferedCategories = [scienceCourses, mathCourses, coreCourses];
+	// SCIENCE slot. Can be filled with CORE if no more science to take.
+	preferedCategories = [scienceCourses, coreCourses];
 	course = getAvailableCourse(winter, preferedCategories, WINTER);
 	winter.push(course);
 
@@ -74,8 +74,8 @@ function buildSchedule(major, incomingCredits, sureOfMajor) {
 	course = getAvailableCourse(spring, preferedCategories, SPRING);
 	spring.push(course);
 	
-	// SCIENCE slot. Can be filled with MATH or CORE if no more science to take.
-	preferedCategories = [scienceCourses, mathCourses, coreCourses];
+	// SCIENCE slot. Can be filled with CORE if no more science to take.
+	preferedCategories = [scienceCourses, coreCourses];
 	course = getAvailableCourse(spring, preferedCategories, SPRING);
 	spring.push(course);
 
@@ -100,6 +100,28 @@ function buildSchedule(major, incomingCredits, sureOfMajor) {
 }
 
 function updateUsed(coursesTaken) {
+
+	// Look for chem11 or a chem11 sub
+	if ($.inArray(chem11, coursesTaken) == -1) {
+		for (var i = 0; i < coursesTaken.length; i++) {
+			if ($.inArray(coursesTaken[i], chem11Subs) != -1) {
+				used.push(chem11);
+				coursesTaken.splice(i, 1);
+				break;
+			}
+		}
+	}
+
+	// Look for a amth106 sub
+	for (var i = 0; i < coursesTaken.length; i++) {
+		if ($.inArray(coursesTaken[i], amth106Subs) != -1) {
+			used.push(amth106);
+			coursesTaken.splice(i, 1);
+			break;
+		}
+	}
+
+
 	for (var i = 0; i < coursesTaken.length; i++) {
 		used.push(coursesTaken[i]);
 	}	

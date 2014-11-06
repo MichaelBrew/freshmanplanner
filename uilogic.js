@@ -239,7 +239,6 @@ $( "#calcReady11Button" ).click(function() {
 /*****************/
 
 // Returns course[] of ap credits
-// TODO: this will need a lot of work when adding amth 106 credit
 function getApCredits() {
 	incomingCredits = [];
 	var apScores = [];
@@ -274,19 +273,20 @@ function getApCredits() {
 		}
 	}
 	if ("enviro" in apScores) {
-		var score = apScores["enviro"];
-		switch (score) {
-			case "4":
-				incomingCredits.push("Environmental Science (Score 4): Chem 11 Substitution");
-				apCredits.push(chem11);
-				break;
-			case "5":
-				incomingCredits.push("Environmental Science (Score 4): Chem 11 Substitution");
-				apCredits.push(chem11);
-				break;
-			default:
-				// not good enough
-		}
+		var score = apScores["enviro"];		
+			switch (score) {
+				case "4":
+					incomingCredits.push("Environmental Science (Score 4): ENVS 21");
+					apCredits.push(envs21);
+					break;
+				case "5":
+					incomingCredits.push("Environmental Science (Score 5): ENVS 21");
+					apCredits.push(envs21);
+					break;
+				default:
+					// not good enough
+			}
+		
 	}
 	if ("calcBc" in apScores) {
 		var score = apScores["calcBc"];
@@ -317,12 +317,14 @@ function getApCredits() {
 				apCredits.push(chem11);
 				break;
 			case "4":
-				incomingCredits.push("Chemistry (Score 4): Chem 11");						
+				incomingCredits.push("Chemistry (Score 4): Chem 11 and Chem 12");						
 				apCredits.push(chem11);
+				apCredits.push(chem12);				
 				break;
 			case "5":
-				incomingCredits.push("Chemistry (Score 5): Chem 11");						
+				incomingCredits.push("Chemistry (Score 5): Chem 11 and Chem 12");						
 				apCredits.push(chem11);
+				apCredits.push(chem12);
 				break;
 			default:
 				// not good enough
@@ -386,12 +388,18 @@ function getTransferCredits() {
 	if (document.getElementById("checkChem11").checked) {
 		transferCredits.push(chem11);
 	}
+	if (document.getElementById("checkChem12").checked) {
+		transferCredits.push(chem12);
+	}	
 	if (document.getElementById("checkPhys31").checked) {
 		transferCredits.push(phys31);
 	}
 	if (document.getElementById("checkPhys32").checked) {
 		transferCredits.push(phys32);
 	}
+	if (document.getElementById("checkPhys34").checked) {
+		transferCredits.push(phys34);
+	}	
 	if (document.getElementById("checkCoen10").checked) {
 		transferCredits.push(coen10);
 	}
@@ -403,7 +411,16 @@ function getTransferCredits() {
 	}
 	if (document.getElementById("checkCoen19").checked) {
 		transferCredits.push(coen19);
+	}	
+	if (document.getElementById("checkEnvs21").checked) {
+		transferCredits.push(envs21);
 	}
+	if (document.getElementById("checkBiol18").checked) {
+		transferCredits.push(biol18);
+	}
+	if (document.getElementById("checkBiol21").checked) {
+		transferCredits.push(biol21);
+	}			
 	return transferCredits;
 }
 
@@ -430,7 +447,6 @@ function updateTransferCredits() {
 function updateSchedule() {
 	listCredits();
 
-	var apCredits = getApCredits();
 	var transferCredits = getTransferCredits();
 	var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
 
@@ -440,7 +456,7 @@ function updateSchedule() {
 	}
 
  	// TODO list credits for print out
-	var sched = buildSchedule(MAJOR_COEN, apCredits.concat(transferCredits), sureOfMajor);
+	var sched = buildSchedule(MAJOR_COEN, transferCredits, sureOfMajor);
 	displaySchedule(sched);
 }
 
@@ -605,6 +621,12 @@ function checkTransferCreditsFromApCredits() {
 				break;
 			case chem11:
 				coursesToDisable.push("#checkChem11");
+				break;
+			case chem12:
+				coursesToDisable.push("#checkChem12");
+				break;
+			case envs21:
+				coursesToDisable.push("#checkEnvs21");
 				break;
 			case coen10:
 				coursesToDisable.push("#checkCoen10");

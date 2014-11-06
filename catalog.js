@@ -63,13 +63,23 @@ var math12 = new course("MATH 12", CATEGORY_MATH, [true, true, true], [math9, ma
 var math13 = new course("MATH 13", CATEGORY_MATH, [true, true, true], [math9, math11, math12]);
 var math14 = new course("MATH 14", CATEGORY_MATH, [true, true, true], [math9, math11, math12, math13]);
 var math53 = new course("MATH 53", CATEGORY_MATH, [false, true, true], [math9, math11, math12, math13]);
-// TODO more courses
-var mathCourses = [math9, math11, math12, math13, math14, math53];
+var amth106 = new course("AMTH 106", CATEGORY_MATH, [true, true, true], [math9, math11, math12, math13, math14]);
+var amth108 = new course("AMTH 108", CATEGORY_MATH, [true, true, true], [math9, math11, math12, math13, math14]);
 
-var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
-var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
-var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
+var mathCourses = [math9, math11, math12, math13, math14, amth106, amth108, math53];
+
+var biol18 = new course("BIOL 18", CATEGORY_SCIENCE, [false, false, false], []);
+var biol21 = new course("BIOL 21", CATEGORY_SCIENCE, [false, false, false], []);
+var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true, false, false], []);
+var chem12 = new course("CHEM 12", CATEGORY_SCIENCE, [false, false, false], [chem11]);
+var envs21 = new course("ENVS 21", CATEGORY_SCIENCE, [false, false, false], []);
+var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false, true, false], [math11]);
+var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false, false, true], [phys31]); 
+var phys34 = new course("PHYS 34", CATEGORY_SCIENCE, [false, false, false], []);
 var scienceCourses = [chem11, phys31, phys32];
+
+var chem11Subs = [biol18, envs21, phys34];
+var amth106Subs = chem11Subs.concat([chem12, biol21]);
 
 var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
 var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]);
