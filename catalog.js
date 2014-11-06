@@ -68,18 +68,11 @@ var mathCourses = [math9, math11, math12, math13, math14, math53];
 
 var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true,false,false], []);
 var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false,true,false], [math11]);
-/* TODO: technically math12 a pre/co requisite for 32. While it shouldn't be a problem b/c 
- * 31 requires 11 a student could technically have 31 ap credit and not 11 ap credit. 
- * Need to change existing alg to allow for coreqs. */
 var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false,false,true], [phys31]); 
-var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [true,false,false], [phys32]);
-// phys33 is put ahead of chem11 because order in the array breaks ties and if user 
-// has incoming credit for 31 & 32 we  prefer they take phys33 first rather than wait
-// a year
-var scienceCourses = [phys33, chem11, phys31, phys32];
+var scienceCourses = [chem11, phys31, phys32];
 
 var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
-var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]); /* TODO: are there some cases where CTW 2 is in the spring? */
+var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]);
 var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
 var coreCourses = [ctw1, ctw2, core]; 
 

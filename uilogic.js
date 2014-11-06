@@ -309,21 +309,6 @@ function getApCredits() {
 				// not good enough
 		}
 	}
-	if ("physElectric" in apScores) {
-		var score = apScores["physElectric"];
-		switch (score) {
-			case "4":
-				incomingCredits.push("Physics EM (Score 4): Phys 33");
-				apCredits.push(phys33);
-				break;
-			case "5":
-				incomingCredits.push("Physics EM (Score 5): Phys 33");			
-				apCredits.push(phys33);
-				break;
-			default:
-				// not good enough
-		}
-	}
 	if ("chem" in apScores) {
 		var score = apScores["chem"];
 		switch (score) {
@@ -347,11 +332,11 @@ function getApCredits() {
 		var score = apScores["physMechanics"];
 		switch (score) {
 			case "4":
-				incomingCredits.push("Physics EM (Score 4): Phys 31");						
+				incomingCredits.push("Physics Mechanics (Score 4): Phys 31");						
 				apCredits.push(phys31);
 				break;
 			case "5":
-				incomingCredits.push("Physics EM (Score 5): Phys 31");									
+				incomingCredits.push("Physics Mechanics (Score 5): Phys 31");									
 				apCredits.push(phys31);
 				break;
 			default:
@@ -406,9 +391,6 @@ function getTransferCredits() {
 	}
 	if (document.getElementById("checkPhys32").checked) {
 		transferCredits.push(phys32);
-	}
-	if (document.getElementById("checkPhys33").checked) {
-		transferCredits.push(phys33);
 	}
 	if (document.getElementById("checkCoen10").checked) {
 		transferCredits.push(coen10);
@@ -632,9 +614,6 @@ function checkTransferCreditsFromApCredits() {
 				break;
 			case phys31:
 				coursesToDisable.push("#checkPhys31");
-				break;
-			case phys33:
-				coursesToDisable.push("#checkPhys33");
 				break;
 			default:
 				// nada
