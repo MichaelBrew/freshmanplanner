@@ -604,25 +604,64 @@ function updatePrintout(){
 }
 
 function checkTransferCreditsFromTransferCredits() {
-	if (document.getElementById("checkMath12").checked) {
-		$( "#checkMath11" ).prop("checked", true);
-	}
-	if (document.getElementById("checkMath13").checked) {
-		$( "#checkMath11" ).prop("checked", true);
-		$( "#checkMath12" ).prop("checked", true);
-	}
-	if (document.getElementById("checkMath14").checked) {
-		$( "#checkMath11" ).prop("checked", true);
-		$( "#checkMath12" ).prop("checked", true);
-		$( "#checkMath13" ).prop("checked", true);
-	}
-	if (document.getElementById("checkCoen11").checked) {
-		$( "#checkCoen10" ).prop("checked", true);
-	}
-	if (document.getElementById("checkCoen12").checked) {
-		$( "#checkCoen10" ).prop("checked", true);
-		$( "#checkCoen11" ).prop("checked", true);
-	}
+    var math11Box = document.getElementById("checkMath11");
+    var math12Box = document.getElementById("checkMath12");
+    var math13Box = document.getElementById("checkMath13");
+    var math14Box = document.getElementById("checkMath14");
+
+    var coen10Box = document.getElementById("checkCoen10");
+    var coen11Box = document.getElementById("checkCoen11");
+    var coen12Box = document.getElementById("checkCoen12");
+
+    // MATH courses
+    if (math14Box.checked) {
+        math11Box.disabled = true;
+        math12Box.disabled = true;
+        math13Box.disabled = true;
+
+        math11Box.checked = true;
+        math12Box.checked = true;
+        math13Box.checked = true;
+    } else if (math13Box.checked) {
+        math11Box.disabled = true;
+        math12Box.disabled = true;
+        math13Box.disabled = false;
+        math14Box.disabled = false;
+
+        math11Box.checked = true;
+        math12Box.checked = true;
+    } else if (math12Box.checked) {
+        math11Box.disabled = true;
+        math12Box.disabled = false;
+        math13Box.disabled = false;
+        math14Box.disabled = false;
+
+        math11Box.checked = true;
+    } else if (math11Box.checked) {
+        math11Box.disabled = false;
+        math12Box.disabled = false;
+        math13Box.disabled = false;
+        math14Box.disabled = false;
+    }
+
+    // COEN courses
+    if (coen12Box.checked) {
+        coen10Box.disabled = true;
+        coen11Box.disabled = true;
+
+        coen10Box.checked = true;
+        coen11Box.checked = true;
+    } else if (coen11Box.checked) {
+        coen10Box.disabled = true;
+        coen11Box.disabled = false;
+        coen12Box.disabled = false;
+
+        coen10Box.checked = true;
+    } else if (coen10Box.checked) {
+        coen10Box.disabled = false;
+        coen11Box.disabled = false;
+        coen12Box.disabled = false;
+    }
 }
 
 var prevApCredits = [];
