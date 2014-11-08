@@ -188,20 +188,14 @@ $( "#doneTransferButton" ).click(function() {
     moveToCalcReadiness();
 });
 
-/*****************************/
-/* CALC REAADINESS SELECTION */
-/*****************************/
+/****************************/
+/* CALC READINESS SELECTION */
+/****************************/
 
-$( "#calcReady9Button" ).click(function() {
+$( "input[name='calcRadio']" ).click(function() {
     updateSchedule();
     moveToSchedule();
 });
-
-$( "#calcReady11Button" ).click(function() {
-    updateSchedule();
-    moveToSchedule();
-});
-
 
 /***********/
 /* GENERAL */
@@ -450,14 +444,12 @@ function getMajor() {
 function updateApScores() {
 	checkTransferCreditsFromApCredits();
 	checkTransferCreditsFromTransferCredits();
-	checkCalcReadiness();
     updateSchedule();
 }
 
 // Called after interaction with Transfer credits
 function updateTransferCredits() {
 	checkTransferCreditsFromTransferCredits();
-	checkCalcReadiness();
     updateSchedule();
 }
 
@@ -468,9 +460,29 @@ function updateSchedule() {
 	var transferCredits = getTransferCredits();
 	var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
 
-	var hasMath9Credit = document.getElementById("calcReady11Button").checked;
-	if (hasMath9Credit) {
-		transferCredits.unshift(math9);
+	// Selecting calcReady 9 or 11 should override previous credits
+	var calcReady9 = document.getElementById("calcReady9Button").checked;
+	var calcReady11 = document.getElementById("calcReady11Button").checked;
+	if (!calcReady9) {
+		transferCredits.unshift(math9);					
+	}
+	if (calcReady9 || calcReady11) {
+		var index = $.inArray(math11, transferCredits);
+		if (index != -1) {
+			transferCredits.splice(index, 1);
+		}
+		index = $.inArray(math12, transferCredits);
+		if (index != -1) {
+			transferCredits.splice(index, 1);
+		}
+		index = $.inArray(math13, transferCredits);
+		if (index != -1) {
+			transferCredits.splice(index, 1);
+		}
+		index = $.inArray(math14, transferCredits);
+		if (index != -1) {
+			transferCredits.splice(index, 1);
+		}	
 	}
 
 	var sched = buildSchedule(MAJOR_COEN, transferCredits, sureOfMajor);
@@ -589,23 +601,6 @@ function updatePrintout(){
 	}
 
 	getElement.innerHTML = output;	
-}
-
-function checkCalcReadiness() {
-	var apCredits = getApCredits();
-	var transferCredits = getTransferCredits();
-
-	var incoming = apCredits.concat(transferCredits);
-	if ($.inArray(math11, incoming) != -1) {
-		// Skip calc readiness
-		$( "#calcReadyDiv" ).css("opacity", "0.2");
-		$( "#calcReadyDiv" ).find("button").prop("disabled", true);
-		$( "#calcReady11Button" ).prop("checked", true)
-	} else {
-		// Don't skip calc readiness
-		$( "#calcReadyDiv" ).css("opacity", "1.0");
-		$( "#calcReadyDiv" ).find("button").prop("disabled", false);
-	}
 }
 
 function checkTransferCreditsFromTransferCredits() {
