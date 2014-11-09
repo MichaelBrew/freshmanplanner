@@ -5,7 +5,6 @@ function enableCertainty() {
 	$("#noMayChangeMajorButton").prop("disabled", false);
 	$("#yesMayChangeMajorButton").prop("disabled", false);
     $("#majorCertaintyDiv").css("opacity", 1);
-
 }
 
 function moveToAp() {
@@ -215,24 +214,28 @@ $( "input[name='calcRadio']" ).click(function() {
 }());
 
 (function disableElements() {
-    // TODO: Probably shouldn't hardcode eq(x)
-    var children = $( "#content" ).children();
+    var majorCertainty = $( "#majorCertaintyDiv" );
+    var apSelection = $( "#pickApDiv" );
+    var transferSelection = $( "#pickTransferCreditsDiv ");
+    var calcReadiness = $( "#calcReadyDiv" );
+    var scheduleDiv = $( "#viewScheduleDiv" );
 
-    $(children[2]).css("opacity", 0.2);
-    $(children[2]).find("input").prop("disabled", true);
-    $(children[2]).find("button").prop("disabled", true);
-    $(children[3]).css("opacity", 0.2);
-    $(children[3]).find("input").prop("disabled", true);
-    $(children[3]).find("button").prop("disabled", true);
-    $(children[4]).css("opacity", 0.2);
-    $(children[4]).find("input").prop("disabled", true);
-    $(children[5]).css("opacity", 0.2);
-    $(children[5]).find("button").prop("disabled", true);
+    $(majorCertainty).css("opacity", 0.2);
+    $(majorCertainty).find("input").prop("disabled", true);
 
-    $ ("#noMayChangeMajorButton").prop("disabled", true);
-	$ ("#yesMayChangeMajorButton").prop("disabled", true);
-    $ ("#majorCertaintyDiv").css("opacity", 0.2);
-    
+    $(apSelection).css("opacity", 0.2);
+    $(apSelection).find("input").prop("disabled", true);
+    $(apSelection).find("button").prop("disabled", true);
+
+    $(transferSelection).css("opacity", 0.2);
+    $(transferSelection).find("input").prop("disabled", true);
+    $(transferSelection).find("button").prop("disabled", true);
+
+    $(calcReadiness).css("opacity", 0.2);
+    $(calcReadiness).find("input").prop("disabled", true);
+
+    $(scheduleDiv).css("opacity", 0.2);
+    $(scheduleDiv).find("button").prop("disabled", true);
 }());
 
 /*****************/

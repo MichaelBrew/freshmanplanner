@@ -2,9 +2,10 @@ Freshman Fastrack Task List
 
 TASKS
 - (MICHAEL) Remove major certainty question (UI and logic)
+- (MICHAEL) Pick better fonts
 
 BUGS
-- (MICHAEL) Major certainty question overlapping with the 2 major divs
+- (MICHAEL) Major certainty question overlapping with the 2 major divs (NOTE: if we remove the major certainty part, then this won’t be an issue anyway)
 - (MICHAEL) When checkboxes are checked in Safari, they always perform an animation of about 0.5 seconds. That means when you check MATH 14, MATH 11-13 become selected then 0.5 seconds later become disabled. Not apparent in Firefox. Hopefully some way to eliminate animation, but not sure.
 
 QUESTION
