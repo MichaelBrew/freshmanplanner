@@ -3,6 +3,9 @@ Freshman Fastrack Task List
 TASKS
 - (MICHAEL) Remove major certainty question (UI and logic)
 - (MICHAEL) Pick better fonts
+- (MICHAEL) Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
+- (SAM) Prefer C&I sequence over 2 core separated
+- (SAM) COEN 12 almost always in spring
 
 BUGS
 - (MICHAEL) Major certainty question overlapping with the 2 major divs (NOTE: if we remove the major certainty part, then this won’t be an issue anyway)
@@ -12,8 +15,4 @@ QUESTION
 - Accordion style?
 
 Other notes:
--Calc readiness exam overrides incoming credits
--Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
--Prefer C&I sequence over 2 core separated
--coen 12 almost always in spring
--widen schedule
+- Calc readiness exam overrides incoming credits (looks like this is done?)
