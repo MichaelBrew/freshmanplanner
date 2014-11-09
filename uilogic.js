@@ -168,6 +168,7 @@ $( "#noMayChangeMajorButton" ).click(function() {
 /****************/
 /* AP SELECTION */
 /****************/
+
 $( ".apScoreNums" ).click(function() {
     updateApScores();
 })
@@ -661,6 +662,12 @@ function checkTransferCreditsFromTransferCredits() {
         coen10Box.disabled = false;
         coen11Box.disabled = false;
         coen12Box.disabled = false;
+    }
+
+    // If AP scores selected, make sure the courses are still selected
+    for (var i = 0; i < prevApCredits.length; i++) {
+        $( prevApCredits[i] ).prop("checked", true);
+        $( prevApCredits[i] ).prop("disabled", true);
     }
 }
 

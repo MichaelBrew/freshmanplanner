@@ -3,10 +3,10 @@ Freshman Fastrack Task List
 TASKS
 - (MICHAEL) Remove major certainty question (UI and logic)
 - (MICHAEL) Add CHEM 12 to transfer credit (can replace AMTH 106)
-- (MICHAEL) When checking transfer credit boxes for a sequence, the boxes that get auto-filled should be disabled
 
 BUGS
 - (MICHAEL) Major certainty question overlapping with the 2 major divs
+- Make table static size (always resizes when adjusting courses)
 
 QUESTION
 - Accordion style?
