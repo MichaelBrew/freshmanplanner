@@ -2,11 +2,10 @@ Freshman Fastrack Task List
 
 TASKS
 - (MICHAEL) Remove major certainty question (UI and logic)
-- (MICHAEL) Add CHEM 12 to transfer credit (can replace AMTH 106)
 
 BUGS
 - (MICHAEL) Major certainty question overlapping with the 2 major divs
-- Make table static size (always resizes when adjusting courses)
+- (MICHAEL) When checkboxes are checked in Safari, they always perform an animation of about 0.5 seconds. That means when you check MATH 14, MATH 11-13 become selected then 0.5 seconds later become disabled. Not apparent in Firefox. Hopefully some way to eliminate animation, but not sure.
 
 QUESTION
 - Accordion style?
