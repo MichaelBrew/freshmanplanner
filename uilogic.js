@@ -489,7 +489,7 @@ function updateSchedule() {
 		}	
 	}
 
-	var sched = buildSchedule(MAJOR_COEN, transferCredits, sureOfMajor);
+	var sched = buildSchedule(getMajor(), transferCredits, sureOfMajor);
 	displaySchedule(sched);
 }
 
