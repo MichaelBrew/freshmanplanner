@@ -13,6 +13,3 @@ BUGS
 
 QUESTION
 - Accordion style?
-
-Other notes:
-- Calc readiness exam overrides incoming credits (looks like this is done?)
