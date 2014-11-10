@@ -105,11 +105,9 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 function checkForCI(quarter1Courses, quarter2Courses) {
 
 	for (var i = 0; i < quarter1Courses.length; i++) {
-		if (quarter1Courses[i].title == "CORE") {
+		if (quarter1Courses[i] == core) {
 			for (var j = 0; j < quarter2Courses.length; j++) {
-				if (quarter2Courses[j].title == "CORE") {
-					var ci1 = new course("C&I 1", CATEGORY_CORE, [true,true,true], []);
-					var ci2 = new course("C&I 2", CATEGORY_CORE, [true,true,true], []);
+				if (quarter2Courses[j] == core) {
 					quarter1Courses[i] = ci1;
 					quarter2Courses[j] = ci2;
 					return true;
