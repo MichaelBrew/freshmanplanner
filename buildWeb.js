@@ -3,6 +3,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	var mathCourses = [math9, math11, math12, math13, math14, amth108];
 	var scienceCourses = [chem11]; // TODO there are easier / more logical classes out there
 	var coreCourses = [ctw1, ctw2, ci1, ci2, rtc1, core];
+	var commCourses = [comm2, comm12, comm30];
 
 	var used = [];
 
@@ -12,8 +13,8 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	// Build fall schedule
 	var fall = [];
 	
-	// MATH slot. Can be filled with CORE if no more math to take.
-	var preferedCategories = [mathCourses, coreCourses];
+	// MATH slot. Can be filled with COMM or CORE if no more math to take.
+	var preferedCategories = [mathCourses, commCourses, coreCourses];
 	var course = getAvailableCourse(used, fall, preferedCategories, FALL);
 	fall.push(course);
 
@@ -23,7 +24,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	fall.push(course);
 
 	// COEN slot.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	preferedCategories = [coenCourses, coreCourses];
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);	
 	fall.push(course);
 
@@ -38,18 +39,18 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	// Build winter schedule
 	var winter = [];
 
-	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	// MATH slot. Can be filled with COMM or CORE if no more math to take.
+	preferedCategories = [mathCourses, commCourses, coreCourses];
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);
 	winter.push(course);
 	
-	// SCIENCE slot. Can be filled with CORE if no more science to take.
-	preferedCategories = [scienceCourses, coreCourses];
+	// CORE slot.
+	preferedCategories = [coreCourses];
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);
 	winter.push(course);
 
-	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	// COEN slot. Can be filled with CORE if no more coen to take.
+	preferedCategories = [coenCourses, coreCourses];
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);	
 	winter.push(course);
 	
@@ -70,8 +71,8 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	// Build spring schedule
 	var spring = [];
 	
-	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	// MATH slot. Can be filled with COMM or CORE if no more math to take.
+	preferedCategories = [mathCourses, commCourses, coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);
 	spring.push(course);
 	
