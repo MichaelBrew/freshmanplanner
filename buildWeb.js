@@ -2,7 +2,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	var coenCourses = [coen10, coen11, coen12];
 	var mathCourses = [math9, math11, math12, math13, math14, amth108];
 	var scienceCourses = [chem11]; // TODO there are easier / more logical classes out there
-	var coreCourses = [ctw1, ctw2, ci1, ci2, rtc1, core];
+	var coreCourses = [ctw1, ctw2, ci1, ci2, core];
 	var commCourses = [comm2, comm12, comm30];
 
 	var used = [];
@@ -19,7 +19,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	fall.push(course);
 
 	// SCIENCE slot. Can be filled with CORE if no more science to take.
-	preferedCategories = [scienceCourses, coreCourses];
+	preferedCategories = [scienceCourses, commCourses, coreCourses];
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);
 	fall.push(course);
 
