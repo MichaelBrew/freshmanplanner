@@ -1,5 +1,4 @@
 function buildWebSchedule(incomingCredits, sureOfMajor) {
-	var coenCourses = [coen10, coen11, coen12];
 	var mathCourses = [math9, math11, math12, math13, math14, amth108];
 	var scienceCourses = [chem11]; // TODO there are easier / more logical classes out there
 	var coreCourses = [ctw1, ctw2, ci1, ci2, core];
@@ -24,7 +23,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	fall.push(course);
 
 	// COEN slot.
-	preferedCategories = [coenCourses, coreCourses];
+	preferedCategories = [[coen10], coreCourses];
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);	
 	fall.push(course);
 
@@ -50,7 +49,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	winter.push(course);
 
 	// COEN slot. Can be filled with CORE if no more coen to take.
-	preferedCategories = [coenCourses, coreCourses];
+	preferedCategories = [[coen11], coreCourses];
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);	
 	winter.push(course);
 	
@@ -82,12 +81,12 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	spring.push(course);
 
 	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	preferedCategories = [[coen12], scienceCourses, coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);	
 	spring.push(course);
 
 	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	preferedCategories = [[coen19], scienceCourses, coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);	
 	spring.push(course);
 	

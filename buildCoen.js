@@ -22,8 +22,9 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);
 	fall.push(course);
 
-	// COEN slot.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	// COEN slot. Prefer not to advance past coen10
+	var coenPreference = [];
+	preferedCategories = [[coen10], coreCourses];
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);	
 	fall.push(course);
 
@@ -48,8 +49,8 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);
 	winter.push(course);
 
-	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	// COEN slot. Prefer not to advance past coen11
+	preferedCategories = [[coen11], coreCourses];
 	course = getAvailableCourse(used, winter, preferedCategories, WINTER);	
 	winter.push(course);
 	

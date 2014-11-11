@@ -5,7 +5,6 @@ TASKS
 - (MICHAEL) Pick better fonts
 - (MICHAEL) Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
 - (SAM) Prefer C&I sequence over 2 core separated
-- (SAM) COEN 12 almost always in spring
 
 BUGS
 - (MICHAEL) Major certainty question overlapping with the 2 major divs (NOTE: if we remove the major certainty part, then this won’t be an issue anyway)
