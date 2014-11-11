@@ -2,7 +2,7 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	var coenCourses = [coen10, coen11, coen12, coen19];
 	var mathCourses = [math9, math11, math12, math13, math14, amth106, amth108, math53];
 	var scienceCourses = [chem11, phys31, phys32];
-	var coreCourses = [ctw1, ctw2, core]; 
+	var coreCourses = [core]; 
 
 	var used = [];
 
@@ -23,15 +23,12 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	fall.push(course);
 
 	// COEN slot. Prefer not to advance past coen10
-	var coenPreference = [];
 	preferedCategories = [[coen10], coreCourses];
 	course = getAvailableCourse(used, fall, preferedCategories, FALL);	
 	fall.push(course);
 
 	// CTW slot. Hard-coded requirement
-	preferedCategories = [coreCourses];
-	course = getAvailableCourse(used, fall, preferedCategories, FALL);
-	fall.push(course);
+	fall.push(ctw1);
 
 	// Update preqs based on classes taken in the fall
 	updateUsed(used, fall);
@@ -55,9 +52,7 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	winter.push(course);
 	
 	// CTW slot. Hard-coded requirement
-	preferedCategories = [coreCourses];
-	course = getAvailableCourse(used, winter, preferedCategories, WINTER);	
-	winter.push(course);
+	winter.push(ctw2);
 	
 	// Update preqs based on classes taken in the fall
 	updateUsed(used, winter);
