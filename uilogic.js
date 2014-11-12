@@ -335,6 +335,21 @@ function getApCredits() {
 				// not good enough
 		}
 	}
+	if ("physEM" in apScores) {
+		var score = apScores["physEM"];
+		switch (score) {
+			case "4":
+				incomingCredits.push("Physics Electricity & Magnetism (Score 4): Phys 33");						
+				apCredits.push(phys33);
+				break;
+			case "5":
+				incomingCredits.push("Physics Electricity & Magnetism (Score 5): Phys 33");									
+				apCredits.push(phys33);
+				break;
+			default:
+				// not good enough
+		}
+	}	
 	if ("compSci" in apScores) {
 		var score = apScores["compSci"];
 		switch (score) {
@@ -387,6 +402,9 @@ function getTransferCredits() {
 	if (document.getElementById("checkPhys32").checked) {
 		transferCredits.push(phys32);
 	}
+	if (document.getElementById("checkPhys33").checked) {
+		transferCredits.push(phys33);
+	}	
 	if (document.getElementById("checkPhys34").checked) {
 		transferCredits.push(phys34);
 	}	
@@ -691,6 +709,9 @@ function checkTransferCreditsFromApCredits() {
 			case phys31:
 				coursesToDisable.push("#checkPhys31");
 				break;
+			case phys33:
+				coursesToDisable.push("#checkPhys33");
+				break;				
 			default:
 				// nada
 		}

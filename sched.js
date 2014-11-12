@@ -6,8 +6,7 @@ function buildSchedule(major, incomingCredits) {
 	} else if (major == MAJOR_WEB) {
 		sched = buildWebSchedule(incomingCredits);
 	}
-	var sorted = sortSched(sched);
-	return sorted;
+	return sched;
 }
 
 function updateUsed(used, coursesTaken) {
@@ -114,54 +113,4 @@ function addEngineering1(fall, winter, eng1) {
 	} else {
 		fall.push(eng1);
 	}
-}
-
-/* Takes freshman schedule and returns a schedule sorted by category
- * Parameters:
- *	course[][] schedule (course[FALL] corresponds to fall courses and so on) 
- * Return:
- *	course[][] (sorted list of courses)
- */
-function sortSched(schedule) {
-	var sorted = [];
-
-	// Sort each quarter
-	for (var i = 0; i < schedule.length; i++) {
-		var userCoen = [];
-		var userScience = [];
-		var userMath = [];
-		var userCore = [];
-		
-		// Sort into categories
-		for (var j = 0; j < schedule[i].length; j++) {
-			switch (schedule[i][j].category) {
-				case CATEGORY_MATH:
-					 userMath.push(schedule[i][j]);
-					break;
-				case CATEGORY_SCIENCE:
-					 userScience.push(schedule[i][j]);
-					break;
-				case CATEGORY_COEN:
-					 userCoen.push(schedule[i][j]);
-					break;
-				case CATEGORY_CORE:
-					 userCore.push(schedule[i][j]);
-					break;
-			}			
-		}
-		
-		// TODO more second level organizing
-		sorted.push(userCoen.concat(userMath).concat(userScience).concat(userCore));
-		
-		// Put ENG1 at the bottom of the list
-		for (var j = 0; j < sorted[i].length; j++) {
-			if (sorted[i][j] == eng1) {
-				var temp = sorted[i].splice(j, 1);
-				sorted[i].push(temp[0]);
-				break;
-			}
-		}
-		
-	}
-	return sorted;
 }

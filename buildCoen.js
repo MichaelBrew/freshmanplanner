@@ -96,20 +96,35 @@ function buildCoenSchedule(incomingCredits) {
 }
 
 /* Make two consecutive CORE's a C&I sequence.
+ * Attempts to put the sequence on the same row.
  * Returns true if made a C&I sequence, else false.
  */
 function checkForCI(quarter1Courses, quarter2Courses) {
-
+	var q1Core = [];
+	var q2Core = [];
 	for (var i = 0; i < quarter1Courses.length; i++) {
 		if (quarter1Courses[i] == core) {
-			for (var j = 0; j < quarter2Courses.length; j++) {
-				if (quarter2Courses[j] == core) {
-					quarter1Courses[i] = ci1;
-					quarter2Courses[j] = ci2;
-					return true;
-				}
-			}
+			q1Core.push(i);
 		}
+	}
+	for (var i = 0; i < quarter2Courses.length; i++) {
+		if (quarter2Courses[i] == core) {
+			// found a common row
+			if ($.inArray(i, q1Core) != -1) {
+				quarter1Courses[i] = ci1;
+				quarter2Courses[i] = ci2;
+				return true;
+			}
+			q2Core.push(i);
+		}
+	}
+
+	// No common row. See if both quarters have core
+	if (q1Core.length > 0 && q2Core.length > 0) {
+		// Cant align C&I, just put in first available rows
+		quarter1Courses[q1Core[0]] = ci1;
+		quarter2Courses[q2Core[0]] = ci2;
+		return true;
 	}
 
 	return false;
