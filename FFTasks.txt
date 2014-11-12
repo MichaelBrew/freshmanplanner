@@ -1,8 +1,6 @@
 Freshman Fastrack Task List
 
 TASKS
-- (MICHAEL) Style “Done” and “Print” buttons
-- (MICHAEL) Separate out radio buttons in AP and Calc readiness sections more
 - (SAM) Prefer C&I sequence over 2 core separated (don’t think this occurs anymore)
 
 BUGS

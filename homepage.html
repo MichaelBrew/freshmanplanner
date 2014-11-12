@@ -112,10 +112,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <button id="doneApButton">Done</button>
-                    </td>
-                    <td><b>Physics C: Electricity & Magnetism</b><br>
+                    <td><span class="apSubjectTitle">Physics C: Electricity & Magnetism</span><br>
                         <form id="physEM">
                             <input type="radio" name="physEMScore" id="physEMNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="physEMScore" id="physEM1" class="apScoreNums" value="1">1
@@ -124,7 +121,10 @@
                             <input type="radio" name="physEMScore" id="physEM4" class="apScoreNums" value="4">4
                             <input type="radio" name="physEMScore" id="physEM5" class="apScoreNums" value="5">5
                         </form>
-                    </td>                    
+                    </td>
+                    <td>
+                        <button id="doneApButton" class="doneButton">Done</button>
+                    </td>
                 </tr>
             </table>
         </div>
@@ -167,7 +167,7 @@
                     <td></td>
                     <td><input type="checkbox" id="checkPhys33" class="transferCreditCheck">PHYS 33</td>
                     <td></td>
-                </tr>                
+                </tr>
                 <tr>
                     <td></td>
                     <td><input type="checkbox" id="checkPhys34" class="transferCreditCheck">PHYS 34</td>
@@ -184,7 +184,8 @@
                     <td></td>
                 </tr>
             </table>
-            <button id="doneTransferButton">Done</button>
+            <br>
+            <button id="doneTransferButton" class="doneButton">Done</button>
         </div>
         <hr>
         <div id="calcReadyDiv" class="stageDiv">
@@ -229,7 +230,8 @@
                     <td id = "fall4"></td>
                     <td id = "winter4"></td>
             </table>
-            <button id="printScheduleButton" onClick="window.print()">Print</button>
+            <br>
+            <button id="printScheduleButton" class="doneButton" onClick="window.print()">Print</button>
         </div>
         <div id="creditsList">
         <p id="creditsParagraph"></p>

@@ -21,6 +21,26 @@
     padding: 20px;
 }
 
+.doneButton {
+    width: 70px;
+    height: 40px;
+    font-size: 14px;
+    background-color: #E6E6E6;
+    opacity: 0.9;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 0;
+}
+
+.doneButton:hover {
+    opacity: 0.6;
+}
+
+.doneButton:active {
+    opacity: 1.0;
+}
+
 hr {
     opacity: 0.2;
 }
