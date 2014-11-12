@@ -2,8 +2,9 @@
  * GENERAL
  */
 #containerDiv {
-    margin: 20px;
+    margin: 0px;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
 }
 
 #content {
@@ -12,21 +13,59 @@
     text-align: center;
 }
 
+.stageTitle {
+    font-size: 24px;
+}
+
 .stageDiv {
     padding: 20px;
+}
+
+.doneButton {
+    width: 70px;
+    height: 40px;
+    font-size: 14px;
+    background-color: #E6E6E6;
+    opacity: 0.9;
+
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border: 0;
+}
+
+.doneButton:hover {
+    opacity: 0.6;
+}
+
+.doneButton:active {
+    opacity: 1.0;
 }
 
 hr {
     opacity: 0.2;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 /*
  * TITLE
  */
+#titleDiv {
+    width: 100%;
+    background-color: #B80000;
+    padding: 5px;
+    margin-bottom: 40px;
+}
+
 #titleText {
-    font-family: Bell MT;
+    font-family: Open Sans;
     font-size: 48px;
+    font-weight: 300;
     text-align: center;
+    color: white;
 }
 
 /*
@@ -70,7 +109,6 @@ hr {
 /*
  * PICK AP
  */
-
 .apScoreNums {
     font-size: 14px;
 }
@@ -80,7 +118,7 @@ hr {
 }
 
 .noneButton {
-	border: 2px solid blue;
+    border: 2px solid blue;
 }
 
 #apClassTable {
@@ -91,7 +129,22 @@ hr {
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
-    margin: 20px;
+    margin: 15px;
+}
+
+#apClassTable input {
+    margin-left:15px;
+    margin-right:5px;
+    vertical-align: 2px;
+}
+
+#apClassTable form {
+    margin-top: 10px;
+}
+
+.apSubjectTitle {
+    font-size: 18px;
+    text-decoration: underline;
 }
 
 /*
@@ -104,6 +157,30 @@ hr {
 #transferCreditsTable td {
     padding-left: 10px;
     padding-right: 10px;
+    text-align: left;
+}
+
+#transferCreditsTable th {
+    text-align: center;
+    font-size: 18px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+/*
+ * CALC READINESS
+ */
+#calcReadyDiv td {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 20px;
+}
+
+#calcReadyDiv input {
+    margin-left:15px;
+    margin-right:5px;
+    vertical-align: 2px;
 }
 
 /*

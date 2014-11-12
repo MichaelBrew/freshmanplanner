@@ -118,7 +118,8 @@ $( "#coenMajor" ).click(function() {
     selectedMajor = "coen";
 
     $( this ).css("background","#B2E0FF");
-    $( this ).css("font-weight", "bold");
+    $( this ).css("border", "1px solid black");
+    $( this ).css("border-radius", "2px");
 
     $( "#webMajor" ).css("background","#CAD0D5");
     $( "#webMajor" ).css("border", "none");
@@ -137,7 +138,8 @@ $( "#webMajor" ).click(function() {
     selectedMajor = "web";
 
     $( this ).css("background","#B2E0FF");
-    $( this ).css("font-weight", "bold");
+    $( this ).css("border", "1px solid black");
+    $( this ).css("border-radius", "2px");
 
     $( "#coenMajor" ).css("background","#CAD0D5");
     $( "#coenMajor" ).css("border", "none");
@@ -529,13 +531,17 @@ function displaySchedule(sortedSched) {
 	// Add eng1 cell
 	if (sortedSched[0].length == 5) {
 		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
+        $( "#fall4" ).css("border", "1px solid black");
 		colorCourse("fall4", sortedSched[0][4], false);
 		document.getElementById("winter4").innerHTML = "";
+        $( "#winter4" ).css("border", "none");
 		colorCourse("winter4", sortedSched[0][4], true);
 	} else if (sortedSched[1].length == 5) {
 		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
+        $( "#winter4" ).css("border", "1px solid black");
 		colorCourse("winter4", sortedSched[1][4], false);
 		document.getElementById("fall4").innerHTML = "";
+        $( "#fall4" ).css("border", "none");
 		colorCourse("fall4", sortedSched[1][4], true);
 	}
 }

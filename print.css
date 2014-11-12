@@ -1,4 +1,4 @@
-#pickMajorDiv, #majorCertaintyDiv, #pickApDiv, #pickTransferCreditsDiv, #calcReadyDiv, #printScheduleButton, #scheduleTitle, #titleText, hr {
+#pickMajorDiv, #majorCertaintyDiv, #pickApDiv, #pickTransferCreditsDiv, #calcReadyDiv, #printScheduleButton, #scheduleTitle, #titleText, #titleDiv, hr, br {
 	display:none;
 }
 
