@@ -2,9 +2,8 @@ Freshman Fastrack Task List
 
 TASKS
 - (MICHAEL) Style “Done” and “Print” buttons
-- (SAM) Prefer C&I sequence over 2 core separated
-- (SAM) Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
-- (LOW_PRIORITY) Printout should be colored
+- (MICHAEL) Separate out radio buttons in AP and Calc readiness sections more
+- (SAM) Prefer C&I sequence over 2 core separated (don’t think this occurs anymore)
 
 BUGS
 - (MICHAEL) When checkboxes are checked in Safari, they always perform an animation of about 0.5 seconds. That means when you check MATH 14, MATH 11-13 become selected then 0.5 seconds later become disabled. Not apparent in Firefox. Hopefully some way to eliminate animation, but not sure.
