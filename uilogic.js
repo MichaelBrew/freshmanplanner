@@ -531,12 +531,14 @@ function displaySchedule(sortedSched) {
 	// Add eng1 cell
 	if (sortedSched[0].length == 5) {
 		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
+        $( "#fall4" ).css("border", "1px solid black");
 		colorCourse("fall4", sortedSched[0][4], false);
 		document.getElementById("winter4").innerHTML = "";
         $( "#winter4" ).css("border", "none");
 		colorCourse("winter4", sortedSched[0][4], true);
 	} else if (sortedSched[1].length == 5) {
 		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
+        $( "#winter4" ).css("border", "1px solid black");
 		colorCourse("winter4", sortedSched[1][4], false);
 		document.getElementById("fall4").innerHTML = "";
         $( "#fall4" ).css("border", "none");
