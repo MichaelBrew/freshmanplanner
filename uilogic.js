@@ -533,11 +533,13 @@ function displaySchedule(sortedSched) {
 		document.getElementById("fall4").innerHTML = sortedSched[0][4].title;
 		colorCourse("fall4", sortedSched[0][4], false);
 		document.getElementById("winter4").innerHTML = "";
+        $( "#winter4" ).css("border", "none");
 		colorCourse("winter4", sortedSched[0][4], true);
 	} else if (sortedSched[1].length == 5) {
 		document.getElementById("winter4").innerHTML = sortedSched[1][4].title;
 		colorCourse("winter4", sortedSched[1][4], false);
 		document.getElementById("fall4").innerHTML = "";
+        $( "#fall4" ).css("border", "none");
 		colorCourse("fall4", sortedSched[1][4], true);
 	}
 }
