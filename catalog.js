@@ -55,7 +55,6 @@ var coen10 = new course("COEN 10", CATEGORY_COEN, [true, false, false], []);
 var coen11 = new course("COEN 11", CATEGORY_COEN, [true, true, true], [coen10]);
 var coen12 = new course("COEN 12", CATEGORY_COEN, [true, true, true], [coen10, coen11]);
 var coen19 = new course("COEN 19", CATEGORY_COEN, [false, false, true], []);
-var coenCourses = [coen10, coen11, coen12, coen19];
 
 var math9 = new course("MATH 9", CATEGORY_MATH, [true, false, false], []);
 var math11 = new course("MATH 11", CATEGORY_MATH, [true, true, true], [math9]);
@@ -66,8 +65,6 @@ var math53 = new course("MATH 53", CATEGORY_MATH, [false, true, true], [math9, m
 var amth106 = new course("AMTH 106", CATEGORY_MATH, [true, true, true], [math9, math11, math12, math13, math14]);
 var amth108 = new course("AMTH 108", CATEGORY_MATH, [true, true, true], [math9, math11, math12, math13, math14]);
 
-var mathCourses = [math9, math11, math12, math13, math14, amth106, amth108, math53];
-
 var biol18 = new course("BIOL 18", CATEGORY_SCIENCE, [false, false, false], []);
 var biol21 = new course("BIOL 21", CATEGORY_SCIENCE, [false, false, false], []);
 var chem11 = new course("CHEM 11", CATEGORY_SCIENCE, [true, false, false], []);
@@ -76,13 +73,16 @@ var envs21 = new course("ENVS 21", CATEGORY_SCIENCE, [false, false, false], []);
 var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false, true, false], [math11]);
 var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false, false, true], [phys31]); 
 var phys34 = new course("PHYS 34", CATEGORY_SCIENCE, [false, false, false], []);
-var scienceCourses = [chem11, phys31, phys32];
 
 var chem11Subs = [biol18, envs21, phys34];
 var amth106Subs = chem11Subs.concat([chem12, biol21]);
 
 var ctw1 = new course("CTW 1", CATEGORY_CORE, [true,false,false], []);
 var ctw2 = new course("CTW 2", CATEGORY_CORE, [false,true,false], [ctw1]);
+var ci1 = new course("C&I 1", CATEGORY_CORE, [true,true,true], []);
+var ci2 = new course("C&I 2", CATEGORY_CORE, [true,true,true], [ci1]);
+var comm2 = new course("COMM 2", CATEGORY_CORE, [true,false,true], []);
+var comm12 = new course("COMM 12", CATEGORY_CORE, [true,true,true], []);
+var comm30 = new course("COMM 30", CATEGORY_CORE, [true,true,true], []);
 var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
-var coreCourses = [ctw1, ctw2, core]; 
-
+var core = new course("CORE", CATEGORY_CORE, [true,true,true], []);
