@@ -1,10 +1,10 @@
 /* Main entry point for building the freshman schedule. */
-function buildSchedule(major, incomingCredits, sureOfMajor) {
+function buildSchedule(major, incomingCredits) {
 	var sched = [];
 	if (major == MAJOR_COEN) {
-		sched = buildCoenSchedule(incomingCredits, sureOfMajor);
+		sched = buildCoenSchedule(incomingCredits);
 	} else if (major == MAJOR_WEB) {
-		sched = buildWebSchedule(incomingCredits, sureOfMajor);
+		sched = buildWebSchedule(incomingCredits);
 	}
 	return sched;
 }
@@ -68,11 +68,7 @@ function getAvailableCourse(used, quarterCourses, courseList, quarter) {
  * boolean sureOfMajor
  * course eng1
  */
-function addEngineering1(fall, winter, sureOfMajor, eng1) {
-	if (!sureOfMajor) {
-		fall.push(eng1);
-		return;
-	}
+function addEngineering1(fall, winter, eng1) {
 
 	var MATH_INDEX = 0;
 	var SCIENCE_INDEX = 1;

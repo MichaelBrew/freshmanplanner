@@ -1,4 +1,4 @@
-function buildWebSchedule(incomingCredits, sureOfMajor) {
+function buildWebSchedule(incomingCredits) {
 	var mathCourses = [math9, math11, math12, math13, math14, amth108];
 	var scienceCourses = [chem11]; // TODO there are easier / more logical classes out there
 	var coreCourses = [core];
@@ -58,7 +58,7 @@ function buildWebSchedule(incomingCredits, sureOfMajor) {
 	updateUsed(used, winter);
 	
 	// Add eng1 to fall or winter based on difficulty of sched or certainty of major
-	addEngineering1(fall, winter, sureOfMajor, eng1);
+	addEngineering1(fall, winter, eng1);
 		
 	// Build spring schedule
 	var spring = [];
