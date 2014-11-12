@@ -72,7 +72,10 @@ var chem12 = new course("CHEM 12", CATEGORY_SCIENCE, [false, false, false], [che
 var envs21 = new course("ENVS 21", CATEGORY_SCIENCE, [false, false, false], []);
 var phys31 = new course("PHYS 31", CATEGORY_SCIENCE, [false, true, false], [math11]);
 var phys32 = new course("PHYS 32", CATEGORY_SCIENCE, [false, false, true], [phys31]); 
+var phys33 = new course("PHYS 33", CATEGORY_SCIENCE, [false, false, false], []);
 var phys34 = new course("PHYS 34", CATEGORY_SCIENCE, [false, false, false], []);
+
+var naturalScience = [biol18, biol21, chem11, chem12, envs21, phys32, phys33, phys34];
 
 var chem11Subs = [biol18, envs21, phys34];
 var amth106Subs = chem11Subs.concat([chem12, biol21]);
