@@ -60,6 +60,12 @@ function buildCoenSchedule(incomingCredits) {
 	// Check if added core twice make CI
 	var ci = checkForCI(fall, winter);
 	
+	// Check if shifting coen11 to the fall will allow a ci sequence
+	if (!ci) {
+		if (checkShiftCoen11(fall, winter)){
+			ci = checkForCI(fall, winter);
+		}
+	}
 	// Add eng1 to fall or winter based on difficulty of sched or certainty of major
 	addEngineering1(fall, winter, eng1);
 		
@@ -93,6 +99,41 @@ function buildCoenSchedule(incomingCredits) {
 	
 	var courses = [fall, winter, spring];
 	return courses;
+}
+
+function checkShiftCoen11(fall, winter) {
+	// Cant shift coen11 to fall if user still has to take coen10 or already has coen11 credit
+	if (($.inArray(coen10, fall) != -1) || ($.inArray(coen11, winter) == -1)) {
+		return false;
+	}
+
+	var fallCore = 0;
+	for (var i = 0; i < fall.length; i++) {
+		if (fall[i] == core) {
+			fallCore ++;
+		}
+	}
+
+	// 2 or more core classes, can shift coen11 to fall
+	if (fallCore >= 2) {
+		var coen11Index;
+		for (var i = 0; i < winter.length; i++) {
+			if (winter[i] == coen11) {
+				coen11Index = i;
+				break;
+			}
+		}
+
+		// Should have core at this row, if not something is wrong with the alignment, dont change anything
+		if (fall[coen11Index] != core) {
+			return false;
+		}
+		fall[coen11Index] = coen11;
+		winter[coen11Index] = core;
+		return true;
+	}
+
+	return false;
 }
 
 /* Make two consecutive CORE's a C&I sequence.
