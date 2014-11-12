@@ -104,6 +104,11 @@ hr {
 #transferCreditsTable td {
     padding-left: 10px;
     padding-right: 10px;
+    text-align: left;
+}
+
+#transferCreditsTable th {
+    text-align: center;
 }
 
 /*
