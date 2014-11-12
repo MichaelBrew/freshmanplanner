@@ -6,6 +6,10 @@ function buildWebSchedule(incomingCredits) {
 
 	var used = [];
 
+	if (hasNaturalScience(incomingCredits)) {
+		scienceCourses = [];
+	}
+
 	// add transfer courses
 	updateUsed(used, incomingCredits);
 
@@ -85,3 +89,12 @@ function buildWebSchedule(incomingCredits) {
 	var courses = [fall, winter, spring];
 	return courses;
 } 
+
+function hasNaturalScience(incomingCredits) {
+	for (var i = 0; i < naturalScience.length; i++) {
+		if ($.inArray(naturalScience[i], incomingCredits) != -1) {
+			return true;
+		}
+	}
+	return false;
+}
