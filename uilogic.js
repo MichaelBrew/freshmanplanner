@@ -1,12 +1,6 @@
 var selectedMajor = "";
 var currentStep = 0;
 
-function enableCertainty() {
-	$("#noMayChangeMajorButton").prop("disabled", false);
-	$("#yesMayChangeMajorButton").prop("disabled", false);
-    $("#majorCertaintyDiv").css("opacity", 1);
-}
-
 function moveToAp() {
     currentStep = 1;
 
@@ -129,9 +123,13 @@ $( "#coenMajor" ).click(function() {
     $( "#webMajor" ).css("background","#CAD0D5");
     $( "#webMajor" ).css("border", "none");
     $( "#webMajor" ).css("font-weight", "normal");
-    enableCertainty();
+
+    if (currentStep == 0 && selectedMajor != "") {
+        moveToAp();
+    }
+
     if (currentStep > 0) {
-    	updateSchedule();
+        updateSchedule();
     }
 });
 
@@ -144,23 +142,13 @@ $( "#webMajor" ).click(function() {
     $( "#coenMajor" ).css("background","#CAD0D5");
     $( "#coenMajor" ).css("border", "none");
     $( "#coenMajor" ).css("font-weight", "normal");
-    enableCertainty();
+
+    if (currentStep == 0 && selectedMajor != "") {
+        moveToAp();
+    }
+
     if (currentStep > 0) {
-    	updateSchedule();
-    }
-});
-
-$( "#yesMayChangeMajorButton" ).click(function() {
-	updateSchedule();
-    if (currentStep == 0 && selectedMajor != "") {
-        moveToAp();
-    }
-});
-
-$( "#noMayChangeMajorButton" ).click(function() {
-	updateSchedule();
-    if (currentStep == 0 && selectedMajor != "") {
-        moveToAp();
+        updateSchedule();
     }
 });
 
@@ -214,14 +202,10 @@ $( "input[name='calcRadio']" ).click(function() {
 }());
 
 (function disableElements() {
-    var majorCertainty = $( "#majorCertaintyDiv" );
     var apSelection = $( "#pickApDiv" );
     var transferSelection = $( "#pickTransferCreditsDiv ");
     var calcReadiness = $( "#calcReadyDiv" );
     var scheduleDiv = $( "#viewScheduleDiv" );
-
-    $(majorCertainty).css("opacity", 0.2);
-    $(majorCertainty).find("input").prop("disabled", true);
 
     $(apSelection).css("opacity", 0.2);
     $(apSelection).find("input").prop("disabled", true);
@@ -462,7 +446,6 @@ function updateSchedule() {
 	updatePrintout();
 
 	var transferCredits = getTransferCredits();
-	var sureOfMajor = document.getElementById("noMayChangeMajorButton").checked;
 
 	// Selecting calcReady 9 or 11 should override previous credits
 	var calcReady9 = document.getElementById("calcReady9Button").checked;
@@ -489,7 +472,7 @@ function updateSchedule() {
 		}	
 	}
 
-	var sched = buildSchedule(getMajor(), transferCredits, sureOfMajor);
+	var sched = buildSchedule(getMajor(), transferCredits);
 	displaySchedule(sched);
 }
 

@@ -1,4 +1,4 @@
-function buildCoenSchedule(incomingCredits, sureOfMajor) {
+function buildCoenSchedule(incomingCredits) {
 	var coenCourses = [coen10, coen11, coen12, coen19];
 	var mathCourses = [math9, math11, math12, math13, math14, amth106, amth108, math53];
 	var scienceCourses = [chem11, phys31, phys32];
@@ -61,7 +61,7 @@ function buildCoenSchedule(incomingCredits, sureOfMajor) {
 	var ci = checkForCI(fall, winter);
 	
 	// Add eng1 to fall or winter based on difficulty of sched or certainty of major
-	addEngineering1(fall, winter, sureOfMajor, eng1);
+	addEngineering1(fall, winter, eng1);
 		
 	// Build spring schedule
 	var spring = [];
