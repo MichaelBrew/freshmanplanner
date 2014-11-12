@@ -16,7 +16,7 @@
     <!-- Linking CSS -->
     <link rel="stylesheet" type="text/css" href="coursestyles.css">
     <link rel="stylesheet" type="text/css" href="print.css" media="print">
-    <link href='http://fonts.googleapis.com/css?family=Lato|Marvel|Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato|Marvel|Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
     <!-- Linking jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -27,23 +27,26 @@
 <body>
 <div id="containerDiv" class="pagecontainer">
 
-    <h1 id="titleText"><u>Freshman Fastrack</u></h1>
+    <div id="titleDiv">
+        <p id="titleText">Freshman Fastrack</p>
+    </div>
 
     <div id="content">
         <div id="pickMajorDiv" class="stageDiv">
-            <h3 class="stageTitle">1. Please select your major</h3>
+            <p class="stageTitle">1. Please select your major</p>
             <div id="coenMajor">Computer Science & Engineering</div>
             <div id="webMajor">Web Design & Engineering</div>
         </div>
         <br>
         <br>
         <br>
+        <br>
         <hr>
         <div id="pickApDiv" class="stageDiv">
-            <h3 class="stageTitle">2. Please indicate any AP classes you've taken and your test scores</h3>
+            <p class="stageTitle">2. Please indicate any AP classes you've taken and your test scores</p>
             <table id="apClassTable">
                 <tr>
-                    <td><b>Calculus AB</b><br>
+                    <td><span class="apSubjectTitle">Calculus AB</span><br>
                         <form id="calcAb">
                             <input type="radio" name="calcAbScore" id="calcAbNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="calcAbScore" id="calcAb1" class="apScoreNums" value="1">1
@@ -53,7 +56,7 @@
                             <input type="radio" name="calcAbScore" id="calcAb5" class="apScoreNums" value="5">5
                         </form>
                     </td>
-                    <td><b>Comp. Science A</b><br>
+                    <td><span class="apSubjectTitle">Comp. Science A</span><br>
                         <form id="compSci">
                             <input type="radio" name="compSciScore" id="compSciNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="compSciScore" id="compSci1" class="apScoreNums" value="1">1
@@ -65,7 +68,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Calculus BC</b><br>
+                    <td><span class="apSubjectTitle">Calculus BC</span><br>
                         <form id="calcBc">
                             <input type="radio" name="calcBcScore" id="calcBcNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="calcBcScore" id="calcBc1" class="apScoreNums" value="1">1
@@ -75,7 +78,7 @@
                             <input type="radio" name="calcBcScore" id="calcBc5" class="apScoreNums" value="5">5
                         </form>
                     </td>
-                    <td><b>Environmental Science</b><br>
+                    <td><span class="apSubjectTitle">Environmental Science</span><br>
                         <form id="enviro">
                             <input type="radio" name="enviroScore" id="enviroNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="enviroScore" id="enviro1" class="apScoreNums" value="1">1
@@ -87,7 +90,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><b>Chemistry</b><br>
+                    <td><span class="apSubjectTitle">Chemistry</span><br>
                         <form id="chem">
                             <input type="radio" name="physElectricScore" id="physElectricNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="physElectricScore" id="physElectric1" class="apScoreNums" value="1">1
@@ -97,7 +100,7 @@
                             <input type="radio" name="physElectricScore" id="physElectric1" class="apScoreNums" value="5">5
                         </form>
                     </td>
-                    <td><b>Physics C: Mechanics</b><br>
+                    <td><span class="apSubjectTitle">Physics C: Mechanics</span><br>
                         <form id="physMechanics">
                             <input type="radio" name="physMechanicsScore" id="physMechanicsNone" class="apScoreNums noneButton" value="None" checked>None
                             <input type="radio" name="physMechanicsScore" id="physMechanics1" class="apScoreNums" value="1">1
@@ -117,13 +120,13 @@
         </div>
         <hr>
         <div id="pickTransferCreditsDiv" class="stageDiv">
-            <h3 class="stageTitle">3. Please indicate any classes you can skip due to transfer credits or previous experience</h3>
+            <p class="stageTitle">3. Please indicate any classes you can skip due to transfer credits or previous experience</p>
             <a target="_blank" href="http://www.scu.edu/academics/bulletins/undergraduate/">SCU Course Descriptions</a><br><br>
             <table id="transferCreditsTable">
                 <tr>
-                    <th><b>Math</b></th>
-                    <th><b>Science</b></th>
-                    <th><b>Engineering</b></th>
+                    <th>Math</th>
+                    <th>Science</th>
+                    <th>Engineering</th>
                 </tr>
                 <tr>
                     <td><input type="checkbox" id="checkMath11" class="transferCreditCheck">MATH 11</td>
@@ -170,16 +173,16 @@
         </div>
         <hr>
         <div id="calcReadyDiv" class="stageDiv">
-            <h3 class="stageTitle">4. Which course did the Calculus Readiness Exam recommend?</h3>
+            <p class="stageTitle">4. Which course did the Calculus Readiness Exam recommend?</p>
             <form>
-            <input type="radio" name="calcRadio" id="calcReady9Button" value="9">MATH 9</button>
-            <input type="radio" name="calcRadio" id="calcReady11Button" value="11">MATH 11</button>
-            <input type="radio" name="calcRadio" id="calcReadyDidNotTakeButton" value="DidNotTake">Did not take</button>
+                <input type="radio" name="calcRadio" id="calcReady9Button" value="9">MATH 9</button>
+                <input type="radio" name="calcRadio" id="calcReady11Button" value="11">MATH 11</button>
+                <input type="radio" name="calcRadio" id="calcReadyDidNotTakeButton" value="DidNotTake">Did not take</button>
             </form>
         </div>
         <hr>
         <div id="viewScheduleDiv" class="stageDiv">
-            <h3 id="scheduleTitle" class="stageTitle">5. Enjoy your first year at Santa Clara</h3>
+            <p id="scheduleTitle" class="stageTitle">5. Enjoy your first year at Santa Clara</p>
             <h3 id="printoutTitle"></h3>
             <table id="scheduleTable">
                 <tr>

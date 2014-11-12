@@ -118,7 +118,8 @@ $( "#coenMajor" ).click(function() {
     selectedMajor = "coen";
 
     $( this ).css("background","#B2E0FF");
-    $( this ).css("font-weight", "bold");
+    $( this ).css("border", "1px solid black");
+    $( this ).css("border-radius", "2px");
 
     $( "#webMajor" ).css("background","#CAD0D5");
     $( "#webMajor" ).css("border", "none");
@@ -137,7 +138,8 @@ $( "#webMajor" ).click(function() {
     selectedMajor = "web";
 
     $( this ).css("background","#B2E0FF");
-    $( this ).css("font-weight", "bold");
+    $( this ).css("border", "1px solid black");
+    $( this ).css("border-radius", "2px");
 
     $( "#coenMajor" ).css("background","#CAD0D5");
     $( "#coenMajor" ).css("border", "none");
