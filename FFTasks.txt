@@ -4,6 +4,9 @@ TASKS
 - (MICHAEL) Remove major certainty question (UI and logic)
 - (MICHAEL) Pick better fonts
 - (MICHAEL) Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
+- (MICHAEL) Align all courses in transfer section (checkboxes are off)
+- (MICHAEL) Style “Done” and “Print” buttons
+- (MICHAEL) Separate out radio buttons in AP and Calc readiness sections more
 - (SAM) Prefer C&I sequence over 2 core separated
 - (SAM) COEN 12 almost always in spring
 
