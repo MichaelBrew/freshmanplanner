@@ -1,7 +1,6 @@
 Freshman Fastrack Task List
 
 TASKS
-- (MICHAEL) Remove major certainty question (UI and logic)
 - (MICHAEL) Pick better fonts
 - (MICHAEL) Keep sequences on same row (i.e. Math 11, Math 12, Math 13)
 - (MICHAEL) Align all courses in transfer section (checkboxes are off)
@@ -10,6 +9,7 @@ TASKS
 - (SAM) Prefer C&I sequence over 2 core separated
 
 BUGS
+- (SAM) Printout should be colored
 - (MICHAEL) When checkboxes are checked in Safari, they always perform an animation of about 0.5 seconds. That means when you check MATH 14, MATH 11-13 become selected then 0.5 seconds later become disabled. Not apparent in Firefox. Hopefully some way to eliminate animation, but not sure.
 
 QUESTION
