@@ -8,3 +8,4 @@ BUGS
 
 QUESTION
 - Accordion style?
+- For final product consider some sort of min or fixed width so resizing doesn’t mess up layout
