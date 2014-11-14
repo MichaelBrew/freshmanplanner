@@ -27,22 +27,22 @@
 <body>
 <div id="containerDiv" class="pagecontainer">
 
-    <div id="titleDiv">
+    <div id="titleDiv" class="noprint">
         <p id="titleText">Freshman Fastrack</p>
     </div>
 
     <div id="content">
-        <div id="pickMajorDiv" class="stageDiv">
+        <div id="pickMajorDiv" class="stageDiv noprint">
             <p class="stageTitle">1. Please select your major</p>
             <div id="coenMajor">Computer Science & Engineering</div>
             <div id="webMajor">Web Design & Engineering</div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <hr>
-        <div id="pickApDiv" class="stageDiv">
+        <br class="noprint">
+        <br class="noprint">
+        <br class="noprint">
+        <br class="noprint">
+        <hr class="noprint">
+        <div id="pickApDiv" class="stageDiv noprint">
             <p class="stageTitle">2. Please indicate any AP classes you've taken and your test scores</p>
             <table id="apClassTable">
                 <tr>
@@ -128,8 +128,8 @@
                 </tr>
             </table>
         </div>
-        <hr>
-        <div id="pickTransferCreditsDiv" class="stageDiv">
+        <hr class="noprint">
+        <div id="pickTransferCreditsDiv" class="stageDiv noprint">
             <p class="stageTitle">3. Please indicate any classes you can skip due to transfer credits or previous experience</p>
             <a target="_blank" href="http://www.scu.edu/academics/bulletins/undergraduate/">SCU Course Descriptions</a><br><br>
             <table id="transferCreditsTable">
@@ -187,8 +187,8 @@
             <br>
             <button id="doneTransferButton" class="doneButton">Done</button>
         </div>
-        <hr>
-        <div id="calcReadyDiv" class="stageDiv">
+        <hr class="noprint">
+        <div id="calcReadyDiv" class="stageDiv noprint">
             <p class="stageTitle">4. Which course did the Calculus Readiness Exam recommend?</p>
             <form>
                 <input type="radio" name="calcRadio" id="calcReady9Button" value="9">MATH 9</button>
@@ -197,9 +197,9 @@
             </form>
             <br>
         </div>
-        <hr>
+        <hr class="noprint">
         <div id="viewScheduleDiv" class="stageDiv">
-            <p id="scheduleTitle" class="stageTitle">5. Enjoy your first year at Santa Clara</p>
+            <p id="scheduleTitle" class="stageTitle noprint">5. Enjoy your first year at Santa Clara</p>
             <h3 id="printoutTitle"></h3>
             <table id="scheduleTable">
                 <tr>
@@ -227,12 +227,12 @@
                     <td id = "winter3"></td>
                     <td id = "spring3"></td>
                 </tr>
-                <tr> <!-- TODO: should be done better -->
+                <tr>
                     <td id = "fall4"></td>
                     <td id = "winter4"></td>
             </table>
             <br>
-            <button id="printScheduleButton" class="doneButton" onClick="window.print()">Print</button>
+            <button id="printScheduleButton" class="doneButton noprint" onClick="window.print()">Print</button>
         </div>
         <div id="creditsList">
         <p id="creditsParagraph"></p>
