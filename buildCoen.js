@@ -67,7 +67,7 @@ function buildCoenSchedule(incomingCredits) {
 	var spring = [];
 	
 	// MATH slot. Can be filled with SCIENCE or CORE if no more math to take.
-	preferedCategories = [mathCourses, scienceCourses, coreCourses];
+	preferedCategories = [mathCourses, coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);
 	spring.push(course);
 	
@@ -77,12 +77,12 @@ function buildCoenSchedule(incomingCredits) {
 	spring.push(course);
 
 	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	preferedCategories = [[coen12], coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);	
 	spring.push(course);
 
 	// COEN slot. Can be filled with SCIENCE or CORE if no more coen to take.
-	preferedCategories = [coenCourses, scienceCourses, coreCourses];
+	preferedCategories = [[coen19], coreCourses];
 	course = getAvailableCourse(used, spring, preferedCategories, SPRING);	
 	spring.push(course);
 	
