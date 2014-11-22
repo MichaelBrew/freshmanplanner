@@ -1,11 +1,20 @@
 Freshman Fastrack Task List
 
-TASKS
-- (SAM) coen sequence only shifts when we would have 3 core in one quarter if we didn’t. also shift entire sequence so there are no gaps
+Additional Documentation
+- User manual
+- (MICHAEL) Complete test results
+- Experiences/lessons learned (this was on the senior design packet under the final report section, but I don't remember Atkinson mentioning to include this in the report? Not sure if we need this)
 
-BUGS
-- (MICHAEL) When checkboxes are checked in Safari, they always perform an animation of about 0.5 seconds. That means when you check MATH 14, MATH 11-13 become selected then 0.5 seconds later become disabled. Not apparent in Firefox. Hopefully some way to eliminate animation, but not sure.
+Updating Existing Documentation
+- Updating conceptual model section by moving the figure references in text to each different section (do we need to update the graphics to show our actual implementation? Or just leave the screenshots we have now because that was our original concept?)
+- (MICHAEL) Update architecture section with new diagram
+- (MICHAEL) Update tech. used to remove AJAX references
+- (MICHAEL) Update development timeline with current gantt chart
+- (MICHAEL) Update AP selection test case
 
-QUESTION
-- Accordion style?
-- For final product consider some sort of min or fixed width so resizing doesn’t mess up layout
+System Implementation/Deliverable
+- (MICHAEL) Create a README
+- Get a thumb drive to put everything on
+- (MICHAEL) Update the "SCU Course Descriptions" link in transfer section to not look so "1990s HTML"
+- If we have extra time, make the schedule visible at all times somehow (still don't entirely agree that it will improve the site, but we're creating it for the "customer" that wants that so it's worth doing if we can)
+- Use fixed width so resizing doesn't mess up layout (taken from the tasks list)
