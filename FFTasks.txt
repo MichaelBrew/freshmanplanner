@@ -1,14 +1,14 @@
 Freshman Fastrack Task List
 
 Additional Documentation
-- User manual
+- (SAM) User manual
 - (MICHAEL) Complete test results
 - Experiences/lessons learned (this was on the senior design packet under the final report section, but I don't remember Atkinson mentioning to include this in the report? Not sure if we need this)
 
 Updating Existing Documentation
-- Updating conceptual model section by moving the figure references in text to each different section (do we need to update the graphics to show our actual implementation? Or just leave the screenshots we have now because that was our original concept?)
+- (SAM) Updating conceptual model section by moving the figure references in text to each different section (do we need to update the graphics to show our actual implementation? Or just leave the screenshots we have now because that was our original concept?)
 
 System Implementation/Deliverable
-- Get a thumb drive to put everything on
 - If we have extra time, make the schedule visible at all times somehow (still don't entirely agree that it will improve the site, but we're creating it for the "customer" that wants that so it's worth doing if we can)
-- Use fixed width so resizing doesn't mess up layout (taken from the tasks list)
+
+- Re-test on DC macs and pc’s 
