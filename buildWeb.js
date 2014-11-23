@@ -1,6 +1,6 @@
 function buildWebSchedule(incomingCredits) {
 	var mathCourses = [math9, math11, math12, math13, math14, amth108];
-	var scienceCourses = [chem11]; // TODO there are easier / more logical classes out there
+	var scienceCourses = [chem11];
 	var coreCourses = [core];
 	var commCourses = [comm2, comm12, comm30];
 

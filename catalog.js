@@ -1,9 +1,7 @@
-// TODO enum instead
 var FALL = 0;
 var WINTER = 1;
 var SPRING = 2;
 
-// TODO enum instead
 var CATEGORY_MATH = 0;
 var CATEGORY_SCIENCE = 1;
 var CATEGORY_COEN = 2;
