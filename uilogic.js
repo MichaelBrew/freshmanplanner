@@ -191,7 +191,7 @@ $( "input[name='calcRadio']" ).click(function() {
 /* GENERAL */
 /***********/
 
-(function clearAllInputs() {
+function clearAllInputs() {
     var inputs = $( "input" );
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].checked = false;
@@ -201,9 +201,9 @@ $( "input[name='calcRadio']" ).click(function() {
     for (var i = 0; i < noneButtons.length; i++) {
         noneButtons[i].checked = true;
     }
-}());
+}
 
-(function disableElements() {
+function disableElements() {
     var apSelection = $( "#pickApDiv" );
     var transferSelection = $( "#pickTransferCreditsDiv ");
     var calcReadiness = $( "#calcReadyDiv" );
@@ -222,7 +222,12 @@ $( "input[name='calcRadio']" ).click(function() {
 
     $(scheduleDiv).css("opacity", 0.2);
     $(scheduleDiv).find("button").prop("disabled", true);
-}());
+}
+
+window.onload = function() {
+	clearAllInputs();
+	disableElements();
+};
 
 /*****************/
 /* READING INPUT */
