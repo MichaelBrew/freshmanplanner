@@ -228,9 +228,9 @@ $( "input[name='calcRadio']" ).click(function() {
 /* READING INPUT */
 /*****************/
 
-// Returns course[] of ap credits
+// Returns course[] of ap credits and updates global apCreditsDescriptions
 function getApCredits() {
-	incomingCredits = [];
+	apCreditsDescriptions = [];
 	var apScores = [];
     var apSubjects = $( "form" );
 
@@ -251,11 +251,11 @@ function getApCredits() {
 		var score = apScores["calcAb"];
 		switch (score) {
 			case "4":
-				incomingCredits.push("Calc AB (Score 4): Math 11");
+				apCreditsDescriptions.push("Calc AB (Score 4): Math 11");
 				apCredits.push(math11);
 				break;
 			case "5":
-				incomingCredits.push("Calc AB (Score 5): Math 11");
+				apCreditsDescriptions.push("Calc AB (Score 5): Math 11");
 				apCredits.push(math11);
 				break;
 			default:
@@ -266,11 +266,11 @@ function getApCredits() {
 		var score = apScores["enviro"];		
 			switch (score) {
 				case "4":
-					incomingCredits.push("Environmental Science (Score 4): ENVS 21");
+					apCreditsDescriptions.push("Environmental Science (Score 4): ENVS 21");
 					apCredits.push(envs21);
 					break;
 				case "5":
-					incomingCredits.push("Environmental Science (Score 5): ENVS 21");
+					apCreditsDescriptions.push("Environmental Science (Score 5): ENVS 21");
 					apCredits.push(envs21);
 					break;
 				default:
@@ -282,16 +282,16 @@ function getApCredits() {
 		var score = apScores["calcBc"];
 		switch (score) {
 			case "3":
-				incomingCredits.push("Calc BC (Score 3): Math 11");			
+				apCreditsDescriptions.push("Calc BC (Score 3): Math 11");			
 				apCredits.push(math11);
 				break;
 			case "4":
-				incomingCredits.push("Calc BC (Score 4): Math 11 and Math 12");			
+				apCreditsDescriptions.push("Calc BC (Score 4): Math 11 and Math 12");			
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
 			case "5":
-				incomingCredits.push("Calc BC (Score 5): Math 11 and Math 12");
+				apCreditsDescriptions.push("Calc BC (Score 5): Math 11 and Math 12");
 				apCredits.push(math11);
 				apCredits.push(math12);
 				break;
@@ -303,16 +303,16 @@ function getApCredits() {
 		var score = apScores["chem"];
 		switch (score) {
 			case "3":
-				incomingCredits.push("Chemistry (Score 3): Chem 11");			
+				apCreditsDescriptions.push("Chemistry (Score 3): Chem 11");			
 				apCredits.push(chem11);
 				break;
 			case "4":
-				incomingCredits.push("Chemistry (Score 4): Chem 11 and Chem 12");						
+				apCreditsDescriptions.push("Chemistry (Score 4): Chem 11 and Chem 12");						
 				apCredits.push(chem11);
 				apCredits.push(chem12);				
 				break;
 			case "5":
-				incomingCredits.push("Chemistry (Score 5): Chem 11 and Chem 12");						
+				apCreditsDescriptions.push("Chemistry (Score 5): Chem 11 and Chem 12");						
 				apCredits.push(chem11);
 				apCredits.push(chem12);
 				break;
@@ -324,11 +324,11 @@ function getApCredits() {
 		var score = apScores["physMechanics"];
 		switch (score) {
 			case "4":
-				incomingCredits.push("Physics Mechanics (Score 4): Phys 31");						
+				apCreditsDescriptions.push("Physics Mechanics (Score 4): Phys 31");						
 				apCredits.push(phys31);
 				break;
 			case "5":
-				incomingCredits.push("Physics Mechanics (Score 5): Phys 31");									
+				apCreditsDescriptions.push("Physics Mechanics (Score 5): Phys 31");									
 				apCredits.push(phys31);
 				break;
 			default:
@@ -339,11 +339,11 @@ function getApCredits() {
 		var score = apScores["physEM"];
 		switch (score) {
 			case "4":
-				incomingCredits.push("Physics Electricity & Magnetism (Score 4): Phys 33");						
+				apCreditsDescriptions.push("Physics Electricity & Magnetism (Score 4): Phys 33");						
 				apCredits.push(phys33);
 				break;
 			case "5":
-				incomingCredits.push("Physics Electricity & Magnetism (Score 5): Phys 33");									
+				apCreditsDescriptions.push("Physics Electricity & Magnetism (Score 5): Phys 33");									
 				apCredits.push(phys33);
 				break;
 			default:
@@ -354,16 +354,16 @@ function getApCredits() {
 		var score = apScores["compSci"];
 		switch (score) {
 			case "3":
-				incomingCredits.push("Computer Science A (Score 3): Coen 10");									
+				apCreditsDescriptions.push("Computer Science A (Score 3): Coen 10");									
 				apCredits.push(coen10);
 				break;
 			case "4":
-				incomingCredits.push("Computer Science A (Score 4): Coen 10 and Coen 11");												
+				apCreditsDescriptions.push("Computer Science A (Score 4): Coen 10 and Coen 11");												
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
 			case "5":
-				incomingCredits.push("Computer Science A (Score 5): Coen 10 and Coen 11");															
+				apCreditsDescriptions.push("Computer Science A (Score 5): Coen 10 and Coen 11");															
 				apCredits.push(coen10);
 				apCredits.push(coen11);
 				break;
@@ -567,7 +567,7 @@ function colorCourse(id, course, blank) {
 	}
 }
 
-var incomingCredits = [];
+var apCreditsDescriptions = [];
 function updatePrintout(){
 	var apCredits = getApCredits();
 	var transferCredits = getTransferCredits();
@@ -580,14 +580,14 @@ function updatePrintout(){
 	var getElement = document.getElementById("creditsParagraph");
 	var output = "";
 
-	if (incomingCredits.length > 0 || apCredits.length > 0) {
+	if (transferCredits.length > 0 || apCredits.length > 0) {
 		output += "<b>Waved Classes:</b><br>";
 	}
 
-	if (incomingCredits.length > 0){
+	if (apCreditsDescriptions.length > 0){
 		output += "<br><b>AP Credits:</b><br>";
-		for (var i = 0; i < incomingCredits.length; i++) {
-			output += incomingCredits[i] + "<br>";
+		for (var i = 0; i < apCreditsDescriptions.length; i++) {
+			output += apCreditsDescriptions[i] + "<br>";
 		}
 	}
 	
