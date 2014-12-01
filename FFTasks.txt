@@ -5,3 +5,10 @@ System Implementation/Deliverable
 
 Other
 - Re-test on DC macs and pc’s 
+
+Bugs:
+- Doesn’t remember what we checked. Ie if I check chem. transfer, then check AP chem, then uncheck AP chem, the chem11 box will deselect. (Not sure if this was by design but I thought we had something in place that would keep chem11 checked in this case)
+
+-Waved Classed only shown when there is ap credit (doesn’t show when only transfer credit)
+
+-IE still does not clear past selections making it impossible to continue if you refresh
