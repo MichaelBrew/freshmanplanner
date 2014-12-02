@@ -2,7 +2,10 @@ var selectedMajor = "";
 var currentStep = 0;
 
 function moveToAp() {
-    currentStep = 1;
+    if (currentStep == 0) {
+        currentStep = 1;
+        $( "#jumpToSchedule" ).text("Jump to schedule (1/4 steps complete)");
+    }
 
     $( "#pickApDiv" ).animate({
         opacity: 1.0
@@ -17,7 +20,10 @@ function moveToAp() {
 }
 
 function moveToTransfer() {
-    currentStep = 2;
+    if (currentStep == 1) {
+        currentStep = 2;
+        $( "#jumpToSchedule" ).text("Jump to schedule (2/4 steps complete)");
+    }
 
     $( "#pickTransferCreditsDiv" ).animate({
         opacity: 1.0
@@ -37,7 +43,11 @@ function moveToTransfer() {
 }
 
 function moveToCalcReadiness() {
-    currentStep = 3;
+    if (currentStep == 2) {
+        currentStep = 3;
+        $( "#jumpToSchedule" ).text("Jump to schedule (3/4 steps complete)");
+    }
+
     $( "#calcReadyDiv" ).animate({
     	opacity: 1.0
     }, 500);
@@ -51,7 +61,11 @@ function moveToCalcReadiness() {
 
 function moveToSchedule() {
     movedToScheduleYet = true;
-    currentStep = 4;
+
+    if (currentStep == 3) {
+        currentStep = 4;
+        $( "#jumpToSchedule" ).text("Jump to schedule (4/4 steps complete)");
+    }
 
     $( "#viewScheduleDiv" ).animate({
         opacity: 1.0

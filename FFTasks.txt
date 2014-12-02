@@ -1,10 +1,4 @@
 Freshman Fastrack Task List
 
-System Implementation/Deliverable
-- If we have extra time, make the schedule visible at all times somehow (still don't entirely agree that it will improve the site, but we're creating it for the "customer" that wants that so it's worth doing if we can)
-
 Other
-- Re-test on DC macs and pc’s 
-
-Bugs:
--IE still does not clear past selections making it impossible to continue if you refresh
+- Re-test on DC macs and pc’s
